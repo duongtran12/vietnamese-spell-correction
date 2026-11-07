@@ -35,6 +35,15 @@ def read_jsonl(path: str | Path) -> list[dict[str, Any]]:
     return records
 
 
+def read_json(path: str | Path) -> Any:
+    """Read one UTF-8 JSON value."""
+
+    input_path = Path(path)
+    with input_path.open("r", encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+
 def read_clean_jsonl(path: str | Path) -> list[CleanSentence]:
     """Read and validate clean sentence records from a JSONL file."""
 

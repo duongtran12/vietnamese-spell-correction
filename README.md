@@ -583,3 +583,31 @@ python -m scripts.evaluate_ranker \
   --evaluation data/processed/validation.jsonl
 ```
 
+### Mốc 5 — BiLSTM Detector
+
+Đã triển khai:
+
+- PyTorch Dataset/DataLoader với `<UNK>`, padding mask và label padding an toàn.
+- Embedding ngẫu nhiên, BiLSTM hai chiều, dropout và token classifier.
+- Weighted cross-entropy cho mất cân bằng nhãn, gradient clipping và early stopping.
+- Chọn checkpoint theo validation F1 của lớp `ERROR`.
+- Checkpoint lưu vocabulary, cấu hình, class weights, metric và provenance train-only.
+
+Ngưỡng `error_threshold: 0.5` trong cấu hình là giá trị khởi đầu. Ngưỡng chính thức phải được chọn trên validation và khóa trước khi chạy test.
+
+```bash
+python -m scripts.train_detector \
+  --train data/processed/train.jsonl \
+  --validation data/processed/validation.jsonl \
+  --vocabulary data/processed/vocabulary.json
+```
+
+Chỉ đánh giá test sau khi thiết kế, threshold và hyperparameter đã được khóa bằng validation:
+
+```bash
+python -m scripts.evaluate_detector \
+  --checkpoint artifacts/detector.pt \
+  --data data/processed/test.jsonl \
+  --output reports/detector_test.json
+```
+

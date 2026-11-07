@@ -1,0 +1,17 @@
+seed: 42
+
+model:
+  embedding_dim: 128
+  hidden_size: 128
+  num_layers: 1
+  dropout: 0.3
+
+training:
+  batch_size: 32
+  epochs: 20
+  learning_rate: 0.001
+  weight_decay: 0.0
+  gradient_clip: 1.0
+  early_stopping_patience: 4
+  error_threshold: 0.5
+
