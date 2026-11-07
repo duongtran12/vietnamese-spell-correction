@@ -611,3 +611,23 @@ python -m scripts.evaluate_detector \
   --output reports/detector_test.json
 ```
 
+### Mốc 6 — Inference end-to-end
+
+Đã triển khai:
+
+- Kết nối BiLSTM detector, edit-distance candidates và Trigram ranker.
+- Sửa tuần tự từ trái sang phải và cập nhật ngữ cảnh sau mỗi thay đổi.
+- Giữ nguyên token khi detector confidence hoặc rank margin chưa đạt ngưỡng.
+- Bảo toàn khoảng trắng và dấu câu bằng character span của câu gốc.
+- Trả về Top-3 cùng detector confidence và từng thành phần điểm.
+- Đánh giá detection F1, correction F1, Accuracy@1/3, sentence accuracy và false-correction rate.
+
+```bash
+python -m scripts.correct_text "Hôm nay tôi đi hộc." \
+  --detector artifacts/detector.pt \
+  --vocabulary data/processed/vocabulary.json \
+  --trigram artifacts/trigram_lm.json
+```
+
+Các ngưỡng trong `configs/inference.yaml` phải được chọn trên validation và khóa trước khi đánh giá test.
+

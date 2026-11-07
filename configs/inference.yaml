@@ -1,0 +1,5 @@
+detector_threshold: 0.5
+minimum_rank_margin: 0.0
+candidate_pool_size: 5
+top_k_suggestions: 3
+
