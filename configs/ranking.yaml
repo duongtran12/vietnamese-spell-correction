@@ -5,3 +5,12 @@ candidates:
   long_token_max_distance: 2
   top_k: 5
 
+language_model:
+  add_k: 0.1
+  lambdas: [0.1, 0.3, 0.6]
+
+ranker:
+  context_weight: 1.0
+  edit_weight: 1.0
+  frequency_weight: 0.1
+

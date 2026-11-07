@@ -562,3 +562,24 @@ python -m scripts.evaluate_candidates \
   --evaluation data/processed/validation.jsonl
 ```
 
+### Mốc 4 — Trigram Language Model và Context Ranker
+
+Đã triển khai:
+
+- Unigram, bigram và trigram counts chỉ fit trên câu sạch của train.
+- Add-k smoothing và linear interpolation có cấu hình.
+- Chấm log-probability cho đúng cửa sổ bị ảnh hưởng khi thay một token.
+- Ranker kết hợp context, edit distance và log-frequency.
+- So sánh Accuracy@1/3 với baseline edit-distance-only.
+- Lưu artifact mô hình thống kê để dùng offline.
+
+Các trọng số và hệ số interpolation trong `configs/ranking.yaml` hiện là cấu hình khởi đầu. Chúng phải được chọn trên validation sau khi có corpus thật và không được điều chỉnh theo test.
+
+```bash
+python -m scripts.train_language_model --train data/processed/train.jsonl
+
+python -m scripts.evaluate_ranker \
+  --train data/processed/train.jsonl \
+  --evaluation data/processed/validation.jsonl
+```
+
