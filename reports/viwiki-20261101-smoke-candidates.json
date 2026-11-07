@@ -1,0 +1,32 @@
+{
+  "examples": 135,
+  "recall_at_k": {
+    "1": 0.5703703703703704,
+    "3": 0.7037037037037037,
+    "5": 0.7777777777777778
+  },
+  "recall_at_k_in_vocabulary": {
+    "1": 0.6637931034482759,
+    "3": 0.8189655172413793,
+    "5": 0.9051724137931034
+  },
+  "in_vocabulary_examples": 116,
+  "target_oov_count": 19,
+  "target_oov_rate": 0.14074074074074075,
+  "no_candidate_rate": 0.0962962962962963,
+  "average_candidates": 3.325925925925926,
+  "latency_ms": {
+    "mean": 17.958137037068674,
+    "p95": 32.576000005065
+  },
+  "recall_at_5_by_error_type": {
+    "delete": 0.7142857142857143,
+    "diacritic": 0.8461538461538461,
+    "insert": 0.825,
+    "substitute": 0.6190476190476191,
+    "transpose": 0.8846153846153846
+  },
+  "dictionary_size": 5007,
+  "train_path": "data\\processed\\viwiki-20261101-smoke\\train.jsonl",
+  "evaluation_path": "data\\processed\\viwiki-20261101-smoke\\validation.jsonl"
+}

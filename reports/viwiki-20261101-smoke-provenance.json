@@ -1,0 +1,24 @@
+{
+  "source": "Vietnamese Wikipedia",
+  "project_identifier": "viwiki",
+  "source_url": "https://dumps.wikimedia.org/viwiki/20261101/viwiki-20261101-pages-articles4.xml-p4565247p6065246.bz2",
+  "dump_date": "20261101",
+  "input_file": "viwiki-20261101-pages-articles4.xml-p4565247p6065246.bz2",
+  "input_size_bytes": 377498,
+  "input_sha256": "dd3c5ff2502607839c2864fd62e562135089e32b437be663f2a533983335dcf8",
+  "output_file": "data\\interim\\viwiki-20261101-smoke.jsonl",
+  "parser": "mwparserfromhell",
+  "parser_version": "0.7.2",
+  "config": {
+    "minimum_tokens": 5,
+    "maximum_tokens": 80,
+    "minimum_letter_ratio": 0.6,
+    "maximum_pages": null
+  },
+  "pages_scanned": 596,
+  "main_namespace_pages": 127,
+  "redirects_skipped": 74,
+  "empty_pages_after_cleaning": 0,
+  "sentences_written": 2803,
+  "sentences_filtered": 1054
+}

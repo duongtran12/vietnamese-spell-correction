@@ -1,0 +1,20 @@
+{
+  "examples": 135,
+  "in_vocabulary_examples": 116,
+  "target_oov_rate": 0.14074074074074075,
+  "candidate_recall_at_k": 0.7777777777777778,
+  "baseline_accuracy_at_k": {
+    "1": 0.5703703703703704,
+    "3": 0.7037037037037037
+  },
+  "context_accuracy_at_k": {
+    "1": 0.6518518518518519,
+    "3": 0.7407407407407407
+  },
+  "accuracy_at_1_delta": 0.08148148148148149,
+  "weights": {
+    "context": 1.0,
+    "edit": 1.0,
+    "frequency": 0.1
+  }
+}

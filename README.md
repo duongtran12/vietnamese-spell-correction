@@ -664,3 +664,16 @@ python -m scripts.convert_wikipedia_dump \
   --dump-date DATE
 ```
 
+### Mốc 9 — Real-data smoke experiment
+
+Đã chạy toàn bộ pipeline trên một shard chính thức của Vietnamese Wikipedia dump `20261101`:
+
+- 127 documents, 2.803 câu và 68.106 token sau chuyển đổi.
+- Candidate Recall@5 trên validation: 77,78%.
+- Trigram ranker nâng Accuracy@1 từ 57,04% lên 65,19%.
+- BiLSTM detector validation ERROR-F1: 29,48%.
+- End-to-end correction F1: 26,64%.
+- False-correction rate: 5,65%.
+
+Chi tiết và giới hạn của thí nghiệm nằm trong `reports/VIWIKI_SMOKE_20261101.md`. Test split vẫn chưa được sử dụng.
+

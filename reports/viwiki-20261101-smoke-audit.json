@@ -1,0 +1,539 @@
+{
+  "documents": 127,
+  "sentences": 2803,
+  "sources": {
+    "viwiki": 2803
+  },
+  "characters": 277815,
+  "tokens": 68106,
+  "character_length": {
+    "min": 11,
+    "mean": 99.11344987513378,
+    "median": 86.0,
+    "p95": 222.0,
+    "max": 341
+  },
+  "token_length": {
+    "min": 5,
+    "mean": 24.297538351765965,
+    "median": 21.0,
+    "p95": 55.0,
+    "max": 80
+  },
+  "empty_after_normalization": 0,
+  "non_nfc_sentences": 0,
+  "duplicate_sentence_id_groups": 0,
+  "exact_duplicate_sentence_groups": 40,
+  "exact_duplicate_records": 75,
+  "sentences_with_url": 0,
+  "sentences_with_email": 0,
+  "sentences_with_abnormal_character_ratio_above_10_percent": 23,
+  "near_duplicates": {
+    "threshold": 0.9,
+    "comparisons": 1849,
+    "truncated": false,
+    "pairs_found": 545,
+    "examples": [
+      {
+        "left_sentence_id": "viwiki-4585266-s00001",
+        "right_sentence_id": "viwiki-4723997-s00001",
+        "similarity": 0.9545454545454546
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00001",
+        "right_sentence_id": "viwiki-4986940-s00001",
+        "similarity": 0.9731543624161074
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00001",
+        "right_sentence_id": "viwiki-5101268-s00001",
+        "similarity": 0.98
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00001",
+        "right_sentence_id": "viwiki-5202956-s00001",
+        "similarity": 0.9602649006622517
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00001",
+        "right_sentence_id": "viwiki-5216407-s00001",
+        "similarity": 0.9545454545454546
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00001",
+        "right_sentence_id": "viwiki-5380498-s00001",
+        "similarity": 0.9235668789808917
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00001",
+        "right_sentence_id": "viwiki-5397301-s00001",
+        "similarity": 0.9539473684210527
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00001",
+        "right_sentence_id": "viwiki-5456734-s00001",
+        "similarity": 0.9294871794871795
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00001",
+        "right_sentence_id": "viwiki-4986940-s00001",
+        "similarity": 0.9539473684210527
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00001",
+        "right_sentence_id": "viwiki-5101268-s00001",
+        "similarity": 0.9607843137254902
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00001",
+        "right_sentence_id": "viwiki-5202956-s00001",
+        "similarity": 0.9675324675324676
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00001",
+        "right_sentence_id": "viwiki-5216407-s00001",
+        "similarity": 0.9363057324840764
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00001",
+        "right_sentence_id": "viwiki-5380498-s00001",
+        "similarity": 0.94375
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00001",
+        "right_sentence_id": "viwiki-5397301-s00001",
+        "similarity": 0.9612903225806452
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00001",
+        "right_sentence_id": "viwiki-5456734-s00001",
+        "similarity": 0.9371069182389937
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00001",
+        "right_sentence_id": "viwiki-5101268-s00001",
+        "similarity": 0.9797297297297297
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00001",
+        "right_sentence_id": "viwiki-5202956-s00001",
+        "similarity": 0.9731543624161074
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00001",
+        "right_sentence_id": "viwiki-5216407-s00001",
+        "similarity": 0.9539473684210527
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00001",
+        "right_sentence_id": "viwiki-5380498-s00001",
+        "similarity": 0.9354838709677419
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00001",
+        "right_sentence_id": "viwiki-5397301-s00001",
+        "similarity": 0.9666666666666667
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00001",
+        "right_sentence_id": "viwiki-5456734-s00001",
+        "similarity": 0.9415584415584416
+      },
+      {
+        "left_sentence_id": "viwiki-5101268-s00001",
+        "right_sentence_id": "viwiki-5202956-s00001",
+        "similarity": 0.9666666666666667
+      },
+      {
+        "left_sentence_id": "viwiki-5101268-s00001",
+        "right_sentence_id": "viwiki-5216407-s00001",
+        "similarity": 0.9607843137254902
+      },
+      {
+        "left_sentence_id": "viwiki-5101268-s00001",
+        "right_sentence_id": "viwiki-5380498-s00001",
+        "similarity": 0.9294871794871795
+      },
+      {
+        "left_sentence_id": "viwiki-5101268-s00001",
+        "right_sentence_id": "viwiki-5397301-s00001",
+        "similarity": 0.9602649006622517
+      },
+      {
+        "left_sentence_id": "viwiki-5101268-s00001",
+        "right_sentence_id": "viwiki-5456734-s00001",
+        "similarity": 0.9354838709677419
+      },
+      {
+        "left_sentence_id": "viwiki-5202956-s00001",
+        "right_sentence_id": "viwiki-5216407-s00001",
+        "similarity": 0.9415584415584416
+      },
+      {
+        "left_sentence_id": "viwiki-5202956-s00001",
+        "right_sentence_id": "viwiki-5380498-s00001",
+        "similarity": 0.9490445859872612
+      },
+      {
+        "left_sentence_id": "viwiki-5202956-s00001",
+        "right_sentence_id": "viwiki-5397301-s00001",
+        "similarity": 0.9671052631578947
+      },
+      {
+        "left_sentence_id": "viwiki-5202956-s00001",
+        "right_sentence_id": "viwiki-5456734-s00001",
+        "similarity": 0.9423076923076923
+      },
+      {
+        "left_sentence_id": "viwiki-5216407-s00001",
+        "right_sentence_id": "viwiki-5380498-s00001",
+        "similarity": 0.91875
+      },
+      {
+        "left_sentence_id": "viwiki-5216407-s00001",
+        "right_sentence_id": "viwiki-5397301-s00001",
+        "similarity": 0.9483870967741935
+      },
+      {
+        "left_sentence_id": "viwiki-5216407-s00001",
+        "right_sentence_id": "viwiki-5456734-s00001",
+        "similarity": 0.9245283018867925
+      },
+      {
+        "left_sentence_id": "viwiki-5380498-s00001",
+        "right_sentence_id": "viwiki-5397301-s00001",
+        "similarity": 0.9430379746835443
+      },
+      {
+        "left_sentence_id": "viwiki-5380498-s00001",
+        "right_sentence_id": "viwiki-5456734-s00001",
+        "similarity": 0.9320987654320988
+      },
+      {
+        "left_sentence_id": "viwiki-5397301-s00001",
+        "right_sentence_id": "viwiki-5456734-s00001",
+        "similarity": 0.9490445859872612
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00004",
+        "right_sentence_id": "viwiki-4723997-s00002",
+        "similarity": 0.9489795918367347
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00004",
+        "right_sentence_id": "viwiki-4740103-s00002",
+        "similarity": 0.9393939393939394
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00004",
+        "right_sentence_id": "viwiki-4986940-s00002",
+        "similarity": 0.9633507853403142
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00004",
+        "right_sentence_id": "viwiki-5001824-s00002",
+        "similarity": 0.9253731343283582
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00004",
+        "right_sentence_id": "viwiki-5051134-s00002",
+        "similarity": 0.9393939393939394
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00004",
+        "right_sentence_id": "viwiki-5101268-s00002",
+        "similarity": 0.9583333333333334
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00004",
+        "right_sentence_id": "viwiki-5202956-s00002",
+        "similarity": 0.9637305699481865
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00004",
+        "right_sentence_id": "viwiki-5216407-s00013",
+        "similarity": 0.9637305699481865
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00004",
+        "right_sentence_id": "viwiki-5380498-s00002",
+        "similarity": 0.9447236180904522
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00004",
+        "right_sentence_id": "viwiki-5397301-s00002",
+        "similarity": 0.9690721649484536
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00004",
+        "right_sentence_id": "viwiki-5422138-s00002",
+        "similarity": 0.92
+      },
+      {
+        "left_sentence_id": "viwiki-4585266-s00004",
+        "right_sentence_id": "viwiki-5456734-s00003",
+        "similarity": 0.9494949494949495
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00002",
+        "right_sentence_id": "viwiki-4740103-s00002",
+        "similarity": 0.9393939393939394
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00002",
+        "right_sentence_id": "viwiki-4986940-s00002",
+        "similarity": 0.9633507853403142
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00002",
+        "right_sentence_id": "viwiki-5001824-s00002",
+        "similarity": 0.9253731343283582
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00002",
+        "right_sentence_id": "viwiki-5051134-s00002",
+        "similarity": 0.9494949494949495
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00002",
+        "right_sentence_id": "viwiki-5101268-s00002",
+        "similarity": 0.96875
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00002",
+        "right_sentence_id": "viwiki-5202956-s00002",
+        "similarity": 0.9740932642487047
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00002",
+        "right_sentence_id": "viwiki-5216407-s00013",
+        "similarity": 0.9740932642487047
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00002",
+        "right_sentence_id": "viwiki-5380498-s00002",
+        "similarity": 0.9547738693467337
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00002",
+        "right_sentence_id": "viwiki-5397301-s00002",
+        "similarity": 0.9690721649484536
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00002",
+        "right_sentence_id": "viwiki-5422138-s00002",
+        "similarity": 0.93
+      },
+      {
+        "left_sentence_id": "viwiki-4723997-s00002",
+        "right_sentence_id": "viwiki-5456734-s00003",
+        "similarity": 0.9494949494949495
+      },
+      {
+        "left_sentence_id": "viwiki-4740103-s00002",
+        "right_sentence_id": "viwiki-4986940-s00002",
+        "similarity": 0.9533678756476683
+      },
+      {
+        "left_sentence_id": "viwiki-4740103-s00002",
+        "right_sentence_id": "viwiki-5001824-s00002",
+        "similarity": 0.9261083743842364
+      },
+      {
+        "left_sentence_id": "viwiki-4740103-s00002",
+        "right_sentence_id": "viwiki-5051134-s00002",
+        "similarity": 0.95
+      },
+      {
+        "left_sentence_id": "viwiki-4740103-s00002",
+        "right_sentence_id": "viwiki-5101268-s00002",
+        "similarity": 0.9484536082474226
+      },
+      {
+        "left_sentence_id": "viwiki-4740103-s00002",
+        "right_sentence_id": "viwiki-5202956-s00002",
+        "similarity": 0.9538461538461539
+      },
+      {
+        "left_sentence_id": "viwiki-4740103-s00002",
+        "right_sentence_id": "viwiki-5216407-s00013",
+        "similarity": 0.9538461538461539
+      },
+      {
+        "left_sentence_id": "viwiki-4740103-s00002",
+        "right_sentence_id": "viwiki-5380498-s00002",
+        "similarity": 0.945273631840796
+      },
+      {
+        "left_sentence_id": "viwiki-4740103-s00002",
+        "right_sentence_id": "viwiki-5397301-s00002",
+        "similarity": 0.9489795918367347
+      },
+      {
+        "left_sentence_id": "viwiki-4740103-s00002",
+        "right_sentence_id": "viwiki-5422138-s00002",
+        "similarity": 0.9405940594059405
+      },
+      {
+        "left_sentence_id": "viwiki-4740103-s00002",
+        "right_sentence_id": "viwiki-5456734-s00003",
+        "similarity": 0.92
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00002",
+        "right_sentence_id": "viwiki-5001824-s00002",
+        "similarity": 0.9285714285714286
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00002",
+        "right_sentence_id": "viwiki-5051134-s00002",
+        "similarity": 0.9533678756476683
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00002",
+        "right_sentence_id": "viwiki-5101268-s00002",
+        "similarity": 0.983957219251337
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00002",
+        "right_sentence_id": "viwiki-5202956-s00002",
+        "similarity": 0.9787234042553191
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00002",
+        "right_sentence_id": "viwiki-5216407-s00013",
+        "similarity": 0.9787234042553191
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00002",
+        "right_sentence_id": "viwiki-5380498-s00002",
+        "similarity": 0.9484536082474226
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00002",
+        "right_sentence_id": "viwiki-5397301-s00002",
+        "similarity": 0.9735449735449735
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00002",
+        "right_sentence_id": "viwiki-5422138-s00002",
+        "similarity": 0.9435897435897436
+      },
+      {
+        "left_sentence_id": "viwiki-4986940-s00002",
+        "right_sentence_id": "viwiki-5456734-s00003",
+        "similarity": 0.9533678756476683
+      },
+      {
+        "left_sentence_id": "viwiki-5001824-s00002",
+        "right_sentence_id": "viwiki-5051134-s00002",
+        "similarity": 0.9261083743842364
+      },
+      {
+        "left_sentence_id": "viwiki-5001824-s00002",
+        "right_sentence_id": "viwiki-5101268-s00002",
+        "similarity": 0.934010152284264
+      },
+      {
+        "left_sentence_id": "viwiki-5001824-s00002",
+        "right_sentence_id": "viwiki-5202956-s00002",
+        "similarity": 0.9494949494949495
+      },
+      {
+        "left_sentence_id": "viwiki-5001824-s00002",
+        "right_sentence_id": "viwiki-5216407-s00013",
+        "similarity": 0.9494949494949495
+      },
+      {
+        "left_sentence_id": "viwiki-5001824-s00002",
+        "right_sentence_id": "viwiki-5380498-s00002",
+        "similarity": 0.9117647058823529
+      },
+      {
+        "left_sentence_id": "viwiki-5001824-s00002",
+        "right_sentence_id": "viwiki-5397301-s00002",
+        "similarity": 0.9246231155778895
+      },
+      {
+        "left_sentence_id": "viwiki-5001824-s00002",
+        "right_sentence_id": "viwiki-5422138-s00002",
+        "similarity": 0.9073170731707317
+      },
+      {
+        "left_sentence_id": "viwiki-5001824-s00002",
+        "right_sentence_id": "viwiki-5456734-s00003",
+        "similarity": 0.9064039408866995
+      },
+      {
+        "left_sentence_id": "viwiki-5051134-s00002",
+        "right_sentence_id": "viwiki-5101268-s00002",
+        "similarity": 0.9484536082474226
+      },
+      {
+        "left_sentence_id": "viwiki-5051134-s00002",
+        "right_sentence_id": "viwiki-5202956-s00002",
+        "similarity": 0.9641025641025641
+      },
+      {
+        "left_sentence_id": "viwiki-5051134-s00002",
+        "right_sentence_id": "viwiki-5216407-s00013",
+        "similarity": 0.9641025641025641
+      },
+      {
+        "left_sentence_id": "viwiki-5051134-s00002",
+        "right_sentence_id": "viwiki-5380498-s00002",
+        "similarity": 0.9353233830845771
+      },
+      {
+        "left_sentence_id": "viwiki-5051134-s00002",
+        "right_sentence_id": "viwiki-5397301-s00002",
+        "similarity": 0.9591836734693877
+      },
+      {
+        "left_sentence_id": "viwiki-5051134-s00002",
+        "right_sentence_id": "viwiki-5422138-s00002",
+        "similarity": 0.9405940594059405
+      },
+      {
+        "left_sentence_id": "viwiki-5051134-s00002",
+        "right_sentence_id": "viwiki-5456734-s00003",
+        "similarity": 0.94
+      },
+      {
+        "left_sentence_id": "viwiki-5101268-s00002",
+        "right_sentence_id": "viwiki-5202956-s00002",
+        "similarity": 0.9735449735449735
+      },
+      {
+        "left_sentence_id": "viwiki-5101268-s00002",
+        "right_sentence_id": "viwiki-5216407-s00013",
+        "similarity": 0.9735449735449735
+      },
+      {
+        "left_sentence_id": "viwiki-5101268-s00002",
+        "right_sentence_id": "viwiki-5380498-s00002",
+        "similarity": 0.9435897435897436
+      },
+      {
+        "left_sentence_id": "viwiki-5101268-s00002",
+        "right_sentence_id": "viwiki-5397301-s00002",
+        "similarity": 0.968421052631579
+      },
+      {
+        "left_sentence_id": "viwiki-5101268-s00002",
+        "right_sentence_id": "viwiki-5422138-s00002",
+        "similarity": 0.9387755102040817
+      },
+      {
+        "left_sentence_id": "viwiki-5101268-s00002",
+        "right_sentence_id": "viwiki-5456734-s00003",
+        "similarity": 0.9484536082474226
+      },
+      {
+        "left_sentence_id": "viwiki-5202956-s00002",
+        "right_sentence_id": "viwiki-5380498-s00002",
+        "similarity": 0.9591836734693877
+      }
+    ]
+  }
+}
