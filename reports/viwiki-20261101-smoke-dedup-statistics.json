@@ -1,0 +1,62 @@
+{
+  "seed": 42,
+  "input_sentences": 2803,
+  "unique_sentences": 2675,
+  "exact_duplicates_removed": 75,
+  "near_duplicate_deduplication": {
+    "threshold": 0.95,
+    "comparisons": 1082,
+    "records_removed": 53
+  },
+  "vocabulary_size": 5367,
+  "splits": {
+    "train": {
+      "documents": 101,
+      "sentences": 2013,
+      "tokens": 49845,
+      "errors": 1271,
+      "sentences_with_errors": 1271,
+      "error_operations": {
+        "delete": 227,
+        "diacritic": 229,
+        "insert": 292,
+        "substitute": 260,
+        "transpose": 263
+      },
+      "oov_count": 0,
+      "oov_rate": 0.0
+    },
+    "validation": {
+      "documents": 13,
+      "sentences": 234,
+      "tokens": 6136,
+      "errors": 135,
+      "sentences_with_errors": 135,
+      "error_operations": {
+        "delete": 35,
+        "diacritic": 13,
+        "insert": 40,
+        "substitute": 21,
+        "transpose": 26
+      },
+      "oov_count": 651,
+      "oov_rate": 0.10609517601043025
+    },
+    "test": {
+      "documents": 13,
+      "sentences": 428,
+      "tokens": 10564,
+      "errors": 256,
+      "sentences_with_errors": 256,
+      "error_operations": {
+        "delete": 51,
+        "diacritic": 41,
+        "insert": 57,
+        "substitute": 55,
+        "transpose": 52
+      },
+      "oov_count": 960,
+      "oov_rate": 0.09087466868610375
+    }
+  }
+}

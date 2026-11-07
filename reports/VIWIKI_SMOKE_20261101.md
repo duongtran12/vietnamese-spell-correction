@@ -25,6 +25,20 @@ This experiment validates the complete project pipeline on a small, real Vietnam
 
 The shard contains many similarly structured articles. Its near-duplicate rate is too high for final experiments without additional filtering.
 
+### Near-duplicate filtering follow-up
+
+The preparation pipeline was rerun with a 0.95 similarity threshold before document splitting:
+
+- Near-duplicate comparisons: 1,082.
+- Additional near-duplicate records removed: 53.
+- Remaining sentences after exact and near deduplication: 2,675.
+- Train: 2,013 sentences and 49,845 tokens.
+- Validation: 234 sentences and 6,136 tokens.
+- Test: 428 sentences and 10,564 tokens.
+- Validation OOV rate: 10.61%.
+
+The model metrics below belong to the earlier exact-deduplicated split. Models must be retrained before comparing the effect of near-duplicate removal.
+
 ## Prepared splits
 
 - Train: 101 documents, 2,051 sentences, 50,571 tokens.
