@@ -11,25 +11,41 @@ from typing import Any, Iterable, Mapping
 from src.data.schema import CleanSentence
 
 
-def read_clean_jsonl(path: str | Path) -> list[CleanSentence]:
-    """Read and validate clean sentence records from a JSONL file."""
+def read_jsonl(path: str | Path) -> list[dict[str, Any]]:
+    """Read JSON objects from a UTF-8 JSONL file."""
 
     input_path = Path(path)
-    records: list[CleanSentence] = []
+    records: list[dict[str, Any]] = []
     with input_path.open("r", encoding="utf-8") as handle:
         for line_number, line in enumerate(handle, start=1):
             if not line.strip():
                 continue
             try:
                 data = json.loads(line)
-                if not isinstance(data, dict):
-                    raise ValueError("record must be a JSON object")
-                records.append(CleanSentence.from_mapping(data))
-            except (json.JSONDecodeError, ValueError) as error:
+            except json.JSONDecodeError as error:
                 raise ValueError(
-                    f"invalid record at {input_path}:{line_number}: {error}"
+                    f"invalid JSON at {input_path}:{line_number}: {error}"
                 ) from error
+            if not isinstance(data, dict):
+                raise ValueError(
+                    f"invalid record at {input_path}:{line_number}: "
+                    "record must be a JSON object"
+                )
+            records.append(data)
     return records
+
+
+def read_clean_jsonl(path: str | Path) -> list[CleanSentence]:
+    """Read and validate clean sentence records from a JSONL file."""
+
+    records: list[CleanSentence] = []
+    for index, data in enumerate(read_jsonl(path), start=1):
+        try:
+            records.append(CleanSentence.from_mapping(data))
+        except ValueError as error:
+            raise ValueError(f"invalid record at {path}:{index}: {error}") from error
+    return records
+
 
 
 def _atomic_write(path: Path, content: str) -> None:

@@ -546,3 +546,19 @@ python -m pytest -q
 python -m scripts.prepare_data --input data/raw/corpus.jsonl
 ```
 
+### Mốc 3 — Baseline Edit Distance
+
+Đã triển khai:
+
+- Levenshtein và unrestricted Damerau–Levenshtein từ đầu.
+- Từ điển tần suất chỉ lấy token chữ cái từ tập train sạch.
+- Candidate generator có index theo độ dài và giới hạn khoảng cách theo độ dài token.
+- Baseline xếp hạng theo edit distance, sau đó phá hòa bằng tần suất train.
+- Đánh giá Recall@1/3/5 toàn bộ và riêng target in-vocabulary, OOV rate, tỷ lệ không có ứng viên, số ứng viên và latency.
+
+```bash
+python -m scripts.evaluate_candidates \
+  --train data/processed/train.jsonl \
+  --evaluation data/processed/validation.jsonl
+```
+

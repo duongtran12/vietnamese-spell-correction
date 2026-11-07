@@ -1,0 +1,7 @@
+candidates:
+  distance: damerau_levenshtein
+  short_token_max_length: 4
+  short_token_max_distance: 1
+  long_token_max_distance: 2
+  top_k: 5
+
