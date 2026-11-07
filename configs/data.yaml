@@ -1,0 +1,17 @@
+seed: 42
+
+split:
+  train: 0.8
+  validation: 0.1
+  test: 0.1
+
+noise:
+  sentence_error_probability: 0.6
+  max_errors_per_sentence: 1
+  operations:
+    - delete
+    - insert
+    - substitute
+    - transpose
+    - diacritic
+

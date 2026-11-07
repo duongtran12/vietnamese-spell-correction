@@ -514,3 +514,21 @@ Ngưỡng số cụ thể (ví dụ F1 tối thiểu) chỉ nên chốt sau khi 
 - Không commit dữ liệu gốc/checkpoint nếu giấy phép hoặc dung lượng không phù hợp.
 - Trước khi thêm thư viện hoặc tài nguyên, kiểm tra nó có chứa mô hình/embedding pretrained hay không.
 
+## 17. Trạng thái triển khai
+
+### Mốc 1 — Nền tảng pipeline dữ liệu
+
+Đã triển khai:
+
+- Cấu hình split, seed và sinh lỗi trong `configs/data.yaml`.
+- Chuẩn hóa Unicode NFC và tokenization có ánh xạ character span.
+- Chia train/validation/test theo `document_id` với kiểm tra leakage.
+- Sinh lỗi token có seed, metadata và các phép xóa, thêm, thay, đảo ký tự, biến đổi dấu.
+- Unit test và smoke test cho pipeline dữ liệu giả.
+
+Chạy kiểm thử từ thư mục gốc của dự án:
+
+```bash
+python -m pytest -q
+```
+
