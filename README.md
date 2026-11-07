@@ -677,3 +677,12 @@ python -m scripts.convert_wikipedia_dump \
 
 Chi tiết và giới hạn của thí nghiệm nằm trong `reports/VIWIKI_SMOKE_20261101.md`. Test split vẫn chưa được sử dụng.
 
+### Mốc 10 — Near-duplicate filtering
+
+Đã triển khai:
+
+- Loại near-duplicate toàn corpus trước khi chia document.
+- So sánh trong block theo độ dài và tiền tố token để kiểm soát chi phí.
+- Giữ bản xuất hiện đầu tiên và ghi threshold, số phép so sánh, số record bị loại.
+- Dừng pipeline nếu vượt giới hạn so sánh thay vì tạo split mới chưa deduplicate đầy đủ.
+

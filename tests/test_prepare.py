@@ -47,3 +47,19 @@ def test_prepare_dataset_is_reproducible_and_train_only() -> None:
     assert learned_tokens == train_tokens
     assert first.report["splits"]["train"]["oov_count"] == 0
 
+
+def test_prepare_dataset_can_remove_near_duplicates_before_split() -> None:
+    records = _corpus() + [
+        CleanSentence(
+            document_id="near-doc",
+            sentence_id="near-sent",
+            text="Đây là nội dung tài liệu số 1!",
+            source="synthetic-test",
+        )
+    ]
+
+    dataset = prepare_dataset(records, seed=42, near_duplicate_threshold=0.95)
+
+    assert dataset.report["near_duplicate_deduplication"]["records_removed"] >= 1
+    assert sum(len(split) for split in dataset.splits.values()) < 10
+

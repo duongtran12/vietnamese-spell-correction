@@ -11,6 +11,7 @@ from src.data.normalize import normalize_text, tokenize
 from src.data.quality import (
     assert_no_sentence_leakage,
     assert_unique_sentence_ids,
+    deduplicate_near_sentences,
     deduplicate_sentences,
 )
 from src.data.schema import CleanSentence, PreparedSentence
@@ -102,12 +103,21 @@ def prepare_dataset(
         "transpose",
         "diacritic",
     ),
+    near_duplicate_threshold: float | None = None,
+    maximum_near_duplicate_comparisons: int = 1_000_000,
 ) -> PreparedDataset:
     """Normalize, deduplicate, split, corrupt, and summarize a clean corpus."""
 
     normalized = _normalize_records(records)
     assert_unique_sentence_ids(normalized)
     unique_records, duplicates_removed = deduplicate_sentences(normalized)
+    near_duplicate_report: dict[str, int | float] | None = None
+    if near_duplicate_threshold is not None:
+        unique_records, near_duplicate_report = deduplicate_near_sentences(
+            unique_records,
+            threshold=near_duplicate_threshold,
+            maximum_comparisons=maximum_near_duplicate_comparisons,
+        )
     split_mappings = split_by_document(
         [record.to_dict() for record in unique_records],
         train_ratio=train_ratio,
@@ -141,6 +151,7 @@ def prepare_dataset(
         "input_sentences": len(records),
         "unique_sentences": len(unique_records),
         "exact_duplicates_removed": duplicates_removed,
+        "near_duplicate_deduplication": near_duplicate_report,
         "vocabulary_size": len(vocabulary.token_to_id),
         "splits": {
             name: _split_report(split_records, vocabulary)

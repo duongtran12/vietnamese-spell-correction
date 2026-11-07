@@ -42,6 +42,8 @@ python -m scripts.audit_data \
 
 Review Unicode normalization, duplicate IDs, exact duplicates, near-duplicate examples, sentence lengths, URLs, emails, and unusual-character ratios before generating final splits.
 
+`configs/data.yaml` enables conservative near-duplicate removal before document-level splitting. If the configured comparison limit is exhausted, preparation stops instead of silently producing partially deduplicated splits.
+
 ## Convert Vietnamese Wikipedia
 
 Download a dated `viwiki-*-pages-articles*.xml.bz2` file from the official Wikimedia dump site and keep it under `data/raw`. Then run:

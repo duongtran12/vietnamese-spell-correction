@@ -45,6 +45,7 @@ def main() -> None:
     args = _parse_args()
     config = _load_config(args.config)
     split_config = config.get("split", {})
+    deduplication_config = config.get("deduplication", {})
     noise_config = config.get("noise", {})
 
     records = read_clean_jsonl(args.input)
@@ -59,6 +60,14 @@ def main() -> None:
         ),
         max_errors=int(noise_config.get("max_errors_per_sentence", 1)),
         operations=tuple(noise_config.get("operations", DEFAULT_OPERATIONS)),
+        near_duplicate_threshold=(
+            float(deduplication_config["near_duplicate_threshold"])
+            if "near_duplicate_threshold" in deduplication_config
+            else None
+        ),
+        maximum_near_duplicate_comparisons=int(
+            deduplication_config.get("maximum_comparisons", 1_000_000)
+        ),
     )
 
     for split_name, split_records in dataset.splits.items():

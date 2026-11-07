@@ -3,14 +3,17 @@
 from __future__ import annotations
 
 from collections import Counter, defaultdict
-from difflib import SequenceMatcher
 import math
 import re
 import unicodedata
 from typing import Any, Sequence
 
 from src.data.normalize import normalize_text, tokenize
-from src.data.quality import canonical_sentence
+from src.data.quality import (
+    canonical_sentence,
+    near_duplicate_block_key,
+    near_duplicate_similarity,
+)
 from src.data.schema import CleanSentence
 
 
@@ -66,8 +69,7 @@ def _near_duplicate_report(
     blocks: dict[tuple[int, tuple[str, ...]], list[tuple[CleanSentence, str]]] = defaultdict(list)
     for record in records:
         canonical = canonical_sentence(record.text).casefold()
-        tokens = canonical.split()
-        block_key = (len(tokens) // 5, tuple(tokens[:2]))
+        block_key = near_duplicate_block_key(canonical)
         blocks[block_key].append((record, canonical))
 
     comparisons = 0
@@ -85,7 +87,7 @@ def _near_duplicate_report(
                 comparisons += 1
                 if left_text == right_text:
                     continue
-                similarity = SequenceMatcher(None, left_text, right_text).ratio()
+                similarity = near_duplicate_similarity(left_text, right_text)
                 if similarity >= threshold:
                     pairs_found += 1
                     if len(examples) < maximum_examples:
