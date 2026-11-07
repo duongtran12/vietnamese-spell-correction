@@ -29,3 +29,15 @@ python -m scripts.prepare_data --input data/raw/corpus.jsonl
 
 The command writes `train.jsonl`, `validation.jsonl`, `test.jsonl`, `vocabulary.json`, and `statistics.json` to `data/processed`. Vocabulary and frequency data are fitted only on the generated training split.
 
+## Audit before preparation
+
+Document the selected corpus in `DATA_CARD.md`, then run:
+
+```bash
+python -m scripts.audit_data \
+  --input data/raw/corpus.jsonl \
+  --output reports/data_audit.json
+```
+
+Review Unicode normalization, duplicate IDs, exact duplicates, near-duplicate examples, sentence lengths, URLs, emails, and unusual-character ratios before generating final splits.
+

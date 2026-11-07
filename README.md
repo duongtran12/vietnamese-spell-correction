@@ -631,3 +631,18 @@ python -m scripts.correct_text "Hôm nay tôi đi hộc." \
 
 Các ngưỡng trong `configs/inference.yaml` phải được chọn trên validation và khóa trước khi đánh giá test.
 
+### Mốc 7 — Data card và corpus audit
+
+Đã triển khai:
+
+- Data card ghi nguồn, giấy phép, vai trò và quy trình phê duyệt corpus.
+- Vietnamese Wikipedia được đề xuất làm corpus sạch để huấn luyện.
+- ViLexNorm được đề xuất làm tập lỗi thật bổ sung và báo cáo riêng.
+- Audit Unicode NFC, duplicate ID, exact duplicate, near-duplicate, URL, email, độ dài và ký tự bất thường.
+
+```bash
+python -m scripts.audit_data \
+  --input data/raw/corpus.jsonl \
+  --output reports/data_audit.json
+```
+
