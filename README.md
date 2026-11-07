@@ -532,3 +532,17 @@ Chạy kiểm thử từ thư mục gốc của dự án:
 python -m pytest -q
 ```
 
+### Mốc 2 — Schema và chuẩn bị dữ liệu
+
+Đã triển khai:
+
+- Schema JSONL có kiểm tra cho dữ liệu sạch và dữ liệu noisy đã căn chỉnh token.
+- Loại câu trùng chính xác sau khi chuẩn hóa Unicode và khoảng trắng.
+- Kiểm tra trùng câu và `document_id` giữa các split.
+- Xây vocabulary cùng tần suất token chỉ từ train, có `<PAD>` và `<UNK>`.
+- Script chuẩn bị dữ liệu xuất các split, vocabulary và báo cáo thống kê.
+
+```bash
+python -m scripts.prepare_data --input data/raw/corpus.jsonl
+```
+

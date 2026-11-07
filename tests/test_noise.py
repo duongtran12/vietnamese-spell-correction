@@ -31,3 +31,15 @@ def test_noise_rejects_invalid_probability() -> None:
     with pytest.raises(ValueError, match="between 0 and 1"):
         generate_noisy_tokens(["xin", "chào"], seed=1, sentence_error_probability=1.1)
 
+
+def test_noise_skips_tokens_incompatible_with_requested_operation() -> None:
+    result = generate_noisy_tokens(
+        ["NLP"],
+        seed=1,
+        sentence_error_probability=1.0,
+        operations=["diacritic"],
+    )
+
+    assert result.tokens == ["NLP"]
+    assert result.events == []
+

@@ -34,6 +34,7 @@ def _build_diacritic_choices() -> dict[str, str]:
 
 
 DIACRITIC_CHOICES = _build_diacritic_choices()
+SUPPORTED_OPERATIONS = {"delete", "insert", "substitute", "transpose", "diacritic"}
 
 
 @dataclass(frozen=True)
@@ -79,27 +80,38 @@ def _apply_operation(token: str, operation: str, rng: random.Random) -> str:
         candidates = [
             index for index in range(len(token) - 1) if token[index] != token[index + 1]
         ]
-        if candidates:
-            index = rng.choice(candidates)
-            return (
-                token[:index]
-                + token[index + 1]
-                + token[index]
-                + token[index + 2 :]
-            )
-        return _apply_operation(token, "substitute", rng)
+        if not candidates:
+            raise ValueError("transpose requires two different adjacent characters")
+        index = rng.choice(candidates)
+        return (
+            token[:index]
+            + token[index + 1]
+            + token[index]
+            + token[index + 2 :]
+        )
 
     if operation == "diacritic":
         candidates = [
             index for index, character in enumerate(token) if character in DIACRITIC_CHOICES
         ]
-        if candidates:
-            index = rng.choice(candidates)
-            replacement = rng.choice(DIACRITIC_CHOICES[token[index]])
-            return token[:index] + replacement + token[index + 1 :]
-        return _apply_operation(token, "substitute", rng)
+        if not candidates:
+            raise ValueError("diacritic noise requires a Vietnamese vowel")
+        index = rng.choice(candidates)
+        replacement = rng.choice(DIACRITIC_CHOICES[token[index]])
+        return token[:index] + replacement + token[index + 1 :]
 
     raise ValueError(f"unsupported noise operation: {operation}")
+
+
+def _compatible_operations(token: str, operations: Sequence[str]) -> list[str]:
+    compatible = list(operations)
+    if not any(
+        token[index] != token[index + 1] for index in range(len(token) - 1)
+    ):
+        compatible = [operation for operation in compatible if operation != "transpose"]
+    if not any(character in DIACRITIC_CHOICES for character in token):
+        compatible = [operation for operation in compatible if operation != "diacritic"]
+    return compatible
 
 
 def generate_noisy_tokens(
@@ -124,14 +136,18 @@ def generate_noisy_tokens(
         raise ValueError("max_errors must be non-negative")
     if not operations:
         raise ValueError("at least one noise operation is required")
+    unsupported = set(operations) - SUPPORTED_OPERATIONS
+    if unsupported:
+        raise ValueError(f"unsupported noise operations: {sorted(unsupported)}")
 
     noisy_tokens = list(tokens)
     rng = random.Random(seed)
-    eligible = [
-        index
+    operations_by_index = {
+        index: _compatible_operations(token, operations)
         for index, token in enumerate(tokens)
         if len(token) >= 2 and all(character.isalpha() for character in token)
-    ]
+    }
+    eligible = [index for index, choices in operations_by_index.items() if choices]
     if not eligible or max_errors == 0 or rng.random() >= sentence_error_probability:
         return NoisyTokens(noisy_tokens, [])
 
@@ -140,7 +156,7 @@ def generate_noisy_tokens(
     events: list[NoiseEvent] = []
     for token_index in selected_indices:
         clean_token = tokens[token_index]
-        operation = rng.choice(list(operations))
+        operation = rng.choice(operations_by_index[token_index])
         noisy_token = _apply_operation(clean_token, operation, rng)
         noisy_tokens[token_index] = noisy_token
         events.append(

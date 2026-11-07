@@ -1,0 +1,10 @@
+{"document_id":"doc-01","sentence_id":"sent-01","text":"Tôi đang học xử lý ngôn ngữ tự nhiên.","source":"synthetic-test"}
+{"document_id":"doc-02","sentence_id":"sent-02","text":"Hôm nay thời tiết rất đẹp.","source":"synthetic-test"}
+{"document_id":"doc-03","sentence_id":"sent-03","text":"Sinh viên thực hành lập trình Python.","source":"synthetic-test"}
+{"document_id":"doc-04","sentence_id":"sent-04","text":"Mô hình cần được đánh giá cẩn thận.","source":"synthetic-test"}
+{"document_id":"doc-05","sentence_id":"sent-05","text":"Dữ liệu huấn luyện phải được kiểm tra.","source":"synthetic-test"}
+{"document_id":"doc-06","sentence_id":"sent-06","text":"Từ điển chỉ được xây từ tập train.","source":"synthetic-test"}
+{"document_id":"doc-07","sentence_id":"sent-07","text":"Mỗi thí nghiệm sử dụng một seed cố định.","source":"synthetic-test"}
+{"document_id":"doc-08","sentence_id":"sent-08","text":"Validation được dùng để chọn cấu hình.","source":"synthetic-test"}
+{"document_id":"doc-09","sentence_id":"sent-09","text":"Tập test dành cho đánh giá cuối cùng.","source":"synthetic-test"}
+{"document_id":"doc-10","sentence_id":"sent-10","text":"Hệ thống đưa ra ba gợi ý sửa lỗi.","source":"synthetic-test"}
