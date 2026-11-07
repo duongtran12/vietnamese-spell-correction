@@ -4,12 +4,14 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass, replace
 import json
+import math
 from pathlib import Path
 from typing import Any, Mapping, Sequence
+import unicodedata
 
 import torch
 
-from src.correction.candidates import CandidateGenerator
+from src.correction.candidates import Candidate, CandidateGenerator
 from src.correction.ranker import CandidateRanker, RankedCandidate
 from src.data.normalize import TokenSpan, normalize_text, tokenize_with_spans
 from src.models.bilstm_detector import BiLSTMDetector, BiLSTMDetectorConfig
@@ -62,6 +64,7 @@ class SpellingCorrectionPipeline:
         *,
         detector_threshold: float = 0.5,
         minimum_rank_margin: float = 0.0,
+        keep_original_bonus: float = 0.75,
         candidate_pool_size: int = 5,
         top_k_suggestions: int = 3,
         device: torch.device | None = None,
@@ -70,6 +73,8 @@ class SpellingCorrectionPipeline:
             raise ValueError("detector_threshold must be between 0 and 1")
         if minimum_rank_margin < 0:
             raise ValueError("minimum_rank_margin must be non-negative")
+        if keep_original_bonus < 0:
+            raise ValueError("keep_original_bonus must be non-negative")
         if candidate_pool_size < 1 or top_k_suggestions < 1:
             raise ValueError("candidate and suggestion sizes must be positive")
         if top_k_suggestions > candidate_pool_size:
@@ -83,6 +88,7 @@ class SpellingCorrectionPipeline:
         self.ranker = ranker
         self.detector_threshold = detector_threshold
         self.minimum_rank_margin = minimum_rank_margin
+        self.keep_original_bonus = keep_original_bonus
         self.candidate_pool_size = candidate_pool_size
         self.top_k_suggestions = top_k_suggestions
         self.device = device or torch.device("cpu")
@@ -113,15 +119,16 @@ class SpellingCorrectionPipeline:
             if confidence < self.detector_threshold:
                 continue
             original_token = original_tokens[token_index]
-            candidates = self.candidate_generator.generate(
-                original_token,
-                top_k=self.candidate_pool_size,
-            )
-            suggestions = self.ranker.rank(
+            candidates = self._candidate_pool(original_token)
+            ranked_candidates = self.ranker.rank(
                 corrected_tokens,
                 token_index,
                 candidates,
-                top_k=self.top_k_suggestions,
+                top_k=len(candidates),
+            )
+            suggestions = self._display_suggestions(
+                original_token,
+                ranked_candidates,
             )
 
             rank_margin: float | None = None
@@ -154,6 +161,85 @@ class SpellingCorrectionPipeline:
             decisions=tuple(decisions),
         )
 
+    def _candidate_pool(self, original_token: str) -> list[Candidate]:
+        """Include keep-original and case-normalized correction options."""
+
+        generated = self.candidate_generator.generate(
+            original_token,
+            top_k=self.candidate_pool_size,
+        )
+        casefolded = original_token.casefold()
+        if casefolded != original_token:
+            generated.extend(
+                self.candidate_generator.generate(
+                    casefolded,
+                    top_k=self.candidate_pool_size,
+                )
+            )
+
+        original_frequency = self.candidate_generator.frequencies.get(
+            original_token,
+            0,
+        )
+        # A title-cased token is usually sentence-initial while the training
+        # dictionary is lowercase. Do not let the OOV keep prior overpower a
+        # well-supported lowercase correction such as ``Hộm`` -> ``Hôm``.
+        original_keep_bonus = (
+            0.0 if original_token.istitle() else self.keep_original_bonus
+        )
+        generated.append(
+            Candidate(
+                token=original_token,
+                distance=0,
+                frequency=original_frequency,
+                edit_score=original_keep_bonus,
+                frequency_score=math.log1p(original_frequency),
+            )
+        )
+
+        by_token: dict[str, Candidate] = {}
+        for candidate in generated:
+            existing = by_token.get(candidate.token)
+            if existing is None or (
+                candidate.distance,
+                -candidate.frequency,
+            ) < (
+                existing.distance,
+                -existing.frequency,
+            ):
+                by_token[candidate.token] = candidate
+        candidates = list(by_token.values())
+        original_skeleton = _diacritic_skeleton(original_token)
+        diacritic_variants = [
+            candidate
+            for candidate in candidates
+            if candidate.token.casefold() != original_token.casefold()
+            and _diacritic_skeleton(candidate.token) == original_skeleton
+        ]
+        if diacritic_variants:
+            original_candidate = by_token[original_token]
+            return [*diacritic_variants, original_candidate]
+        return candidates
+
+    def _display_suggestions(
+        self,
+        original_token: str,
+        ranked_candidates: Sequence[RankedCandidate],
+    ) -> list[RankedCandidate]:
+        """Restore the input case pattern and remove duplicate display options."""
+
+        suggestions: list[RankedCandidate] = []
+        seen: set[str] = set()
+        for candidate in ranked_candidates:
+            display_token = _restore_case_pattern(original_token, candidate.token)
+            if display_token in seen:
+                continue
+            seen.add(display_token)
+            suggestions.append(replace(candidate, token=display_token))
+            if len(suggestions) >= self.top_k_suggestions:
+                break
+        return suggestions
+
     def correct_text(self, text: str) -> CorrectionResult:
         normalized = normalize_text(text)
         spans = tokenize_with_spans(normalized)
@@ -178,6 +264,7 @@ class SpellingCorrectionPipeline:
         trigram_artifact: str | Path,
         detector_threshold: float = 0.5,
         minimum_rank_margin: float = 0.0,
+        keep_original_bonus: float = 0.75,
         candidate_pool_size: int = 5,
         top_k_suggestions: int = 3,
         context_weight: float = 1.0,
@@ -236,6 +323,7 @@ class SpellingCorrectionPipeline:
             ranker,
             detector_threshold=detector_threshold,
             minimum_rank_margin=minimum_rank_margin,
+            keep_original_bonus=keep_original_bonus,
             candidate_pool_size=candidate_pool_size,
             top_k_suggestions=top_k_suggestions,
             device=device,
@@ -257,4 +345,20 @@ def _replace_token_spans(
         cursor = span.end
     pieces.append(text[cursor:])
     return "".join(pieces)
+
+
+def _restore_case_pattern(original: str, candidate: str) -> str:
+    if original.isupper():
+        return candidate.upper()
+    if original.istitle():
+        return candidate[:1].upper() + candidate[1:].lower()
+    return candidate
+
+
+def _diacritic_skeleton(token: str) -> str:
+    normalized = unicodedata.normalize("NFD", token.casefold())
+    without_marks = "".join(
+        character for character in normalized if not unicodedata.combining(character)
+    )
+    return without_marks.replace("đ", "d")
 

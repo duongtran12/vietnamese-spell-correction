@@ -1,5 +1,6 @@
 detector_threshold: 0.5
-minimum_rank_margin: 0.0
+minimum_rank_margin: 0.5
+keep_original_bonus: 0.75
 candidate_pool_size: 5
 top_k_suggestions: 3
 

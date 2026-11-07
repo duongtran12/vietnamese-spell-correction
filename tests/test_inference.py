@@ -41,6 +41,7 @@ def _pipeline(minimum_rank_margin: float = 0.0) -> SpellingCorrectionPipeline:
         CandidateRanker(language_model),
         detector_threshold=0.5,
         minimum_rank_margin=minimum_rank_margin,
+        keep_original_bonus=0.0,
     )
 
 
@@ -61,4 +62,45 @@ def test_pipeline_keeps_token_when_rank_margin_is_too_small() -> None:
     assert result.corrected_text == "tôi đi họ."
     assert result.decisions[0].changed is False
     assert result.decisions[0].suggestions
+
+
+def test_pipeline_can_keep_a_correct_oov_token() -> None:
+    vocabulary = {"<PAD>": 0, "<UNK>": 1, "tôi": 2, "đi": 3}
+    language_model = TrigramLanguageModel().fit([["ta", "đi"], ["tại", "đây"]])
+    pipeline = SpellingCorrectionPipeline(
+        TokenIdDetector(error_token_id=2),  # type: ignore[arg-type]
+        vocabulary,
+        CandidateGenerator({"ta": 10, "tại": 8}),
+        CandidateRanker(language_model),
+        detector_threshold=0.5,
+        minimum_rank_margin=0.5,
+        keep_original_bonus=2.0,
+    )
+
+    result = pipeline.correct_text("tôi đi")
+
+    assert result.corrected_text == "tôi đi"
+    assert result.decisions[0].suggestions[0].token == "tôi"
+    assert result.decisions[0].changed is False
+
+
+def test_pipeline_restores_title_case_after_ranking_lowercase_candidate() -> None:
+    vocabulary = {"<PAD>": 0, "<UNK>": 1, "Hộm": 2, "nay": 3}
+    language_model = TrigramLanguageModel().fit(
+        [["hôm", "nay"], ["hôm", "nay"], ["hôm", "qua"]]
+    )
+    pipeline = SpellingCorrectionPipeline(
+        TokenIdDetector(error_token_id=2),  # type: ignore[arg-type]
+        vocabulary,
+        CandidateGenerator({"hôm": 10, "họp": 1}),
+        CandidateRanker(language_model),
+        detector_threshold=0.5,
+        minimum_rank_margin=0.0,
+        keep_original_bonus=0.75,
+    )
+
+    result = pipeline.correct_text("Hộm nay")
+
+    assert result.corrected_text == "Hôm nay"
+    assert result.decisions[0].suggestions[0].token == "Hôm"
 

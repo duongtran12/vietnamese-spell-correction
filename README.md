@@ -686,3 +686,13 @@ Chi tiết và giới hạn của thí nghiệm nằm trong `reports/VIWIKI_SMOK
 - Giữ bản xuất hiện đầu tiên và ghi threshold, số phép so sánh, số record bị loại.
 - Dừng pipeline nếu vượt giới hạn so sánh thay vì tạo split mới chưa deduplicate đầy đủ.
 
+### Mốc 11 — Safe inference guards
+
+Đã triển khai:
+
+- Luôn thêm phương án giữ nguyên vào danh sách xếp hạng.
+- Không còn ép token OOV phải đổi thành từ gần nhất.
+- Xếp hạng thêm ứng viên casefold và khôi phục kiểu viết hoa khi hiển thị.
+- Dùng rank margin mặc định `0.5` để giảm sửa nhầm token đúng.
+- Thêm prior giữ nguyên và ưu tiên ứng viên chỉ khác dấu khi phù hợp.
+
