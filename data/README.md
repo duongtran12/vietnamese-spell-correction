@@ -16,6 +16,7 @@ The preparation command accepts UTF-8 JSONL with one sentence per line:
 - `sentence_id`: required unique sentence identifier.
 - `text`: required clean Vietnamese sentence.
 - `source`: optional corpus or collection identifier.
+- `document_title`: optional traceable source-document title.
 
 Keep source files in `data/raw`. They are ignored by Git. Record the corpus URL, license or permission, download date, and preprocessing decisions in a separate data card before using the corpus for experiments.
 
@@ -40,4 +41,17 @@ python -m scripts.audit_data \
 ```
 
 Review Unicode normalization, duplicate IDs, exact duplicates, near-duplicate examples, sentence lengths, URLs, emails, and unusual-character ratios before generating final splits.
+
+## Convert Vietnamese Wikipedia
+
+Download a dated `viwiki-*-pages-articles*.xml.bz2` file from the official Wikimedia dump site and keep it under `data/raw`. Then run:
+
+```bash
+python -m scripts.convert_wikipedia_dump \
+  --input data/raw/viwiki-DATE-pages-articles.xml.bz2 \
+  --source-url https://dumps.wikimedia.org/viwiki/DATE/FILE.xml.bz2 \
+  --dump-date DATE
+```
+
+The converter streams the compressed dump without loading it into memory, keeps main-namespace non-redirect articles, removes wiki markup, applies transparent sentence filters, and writes `data/interim/viwiki.jsonl`. It also records the compressed file SHA-256, parser version, filtering configuration, and conversion counts in `data/interim/viwiki_provenance.json`.
 

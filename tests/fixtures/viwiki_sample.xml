@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.11/">
+  <page>
+    <title>Trí tuệ nhân tạo</title>
+    <ns>0</ns>
+    <id>10</id>
+    <revision>
+      <id>100</id>
+      <text xml:space="preserve">'''Trí tuệ nhân tạo''' là một lĩnh vực khoa học máy tính. {{Chú thích}} Nó nghiên cứu các hệ thống thông minh.</text>
+    </revision>
+  </page>
+  <page>
+    <title>Trang chuyển hướng</title>
+    <ns>0</ns>
+    <id>11</id>
+    <redirect title="Đích" />
+    <revision><id>101</id><text>#REDIRECT [[Đích]]</text></revision>
+  </page>
+  <page>
+    <title>Thảo luận:Ví dụ</title>
+    <ns>1</ns>
+    <id>12</id>
+    <revision><id>102</id><text>Nội dung thảo luận không được lấy.</text></revision>
+  </page>
+</mediawiki>

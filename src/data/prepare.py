@@ -32,6 +32,7 @@ def _normalize_records(records: Sequence[CleanSentence]) -> list[CleanSentence]:
             sentence_id=record.sentence_id,
             text=normalize_text(record.text).strip(),
             source=record.source,
+            document_title=record.document_title,
         )
         for record in records
     ]

@@ -23,17 +23,22 @@ class CleanSentence:
     sentence_id: str
     text: str
     source: str | None = None
+    document_title: str | None = None
 
     @classmethod
     def from_mapping(cls, data: Mapping[str, Any]) -> "CleanSentence":
         source = data.get("source")
         if source is not None and not isinstance(source, str):
             raise ValueError("source must be a string or null")
+        document_title = data.get("document_title")
+        if document_title is not None and not isinstance(document_title, str):
+            raise ValueError("document_title must be a string or null")
         return cls(
             document_id=_required_string(data, "document_id"),
             sentence_id=_required_string(data, "sentence_id"),
             text=_required_string(data, "text"),
             source=source.strip() if source else None,
+            document_title=document_title.strip() if document_title else None,
         )
 
     def to_dict(self) -> dict[str, Any]:
@@ -47,6 +52,7 @@ class PreparedSentence:
     document_id: str
     sentence_id: str
     source: str | None
+    document_title: str | None
     clean_text: str
     clean_tokens: tuple[str, ...]
     noisy_tokens: tuple[str, ...]
@@ -75,6 +81,7 @@ class PreparedSentence:
             document_id=clean.document_id,
             sentence_id=clean.sentence_id,
             source=clean.source,
+            document_title=clean.document_title,
             clean_text=clean.text,
             clean_tokens=tuple(clean_tokens),
             noisy_tokens=tuple(noisy_tokens),
@@ -87,6 +94,7 @@ class PreparedSentence:
             "document_id": self.document_id,
             "sentence_id": self.sentence_id,
             "source": self.source,
+            "document_title": self.document_title,
             "clean_text": self.clean_text,
             "clean_tokens": list(self.clean_tokens),
             "noisy_tokens": list(self.noisy_tokens),

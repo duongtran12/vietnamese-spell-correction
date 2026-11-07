@@ -646,3 +646,21 @@ python -m scripts.audit_data \
   --output reports/data_audit.json
 ```
 
+### Mốc 8 — Wikipedia dump converter
+
+Đã triển khai:
+
+- Đọc streaming Wikimedia XML và XML.BZ2 để không nạp toàn bộ dump vào RAM.
+- Chỉ giữ main namespace, bỏ redirect và trang ngoài nội dung bài viết.
+- Loại template, bảng, reference, media/category link và wiki markup bằng parser rule-based.
+- Tách câu, lọc độ dài và tỷ lệ ký tự chữ cái.
+- Giữ `document_id`, tiêu đề bài viết và `sentence_id` ổn định.
+- Ghi SHA-256, dump date, source URL, parser version và thống kê chuyển đổi.
+
+```bash
+python -m scripts.convert_wikipedia_dump \
+  --input data/raw/viwiki-DATE-pages-articles.xml.bz2 \
+  --source-url https://dumps.wikimedia.org/viwiki/DATE/FILE.xml.bz2 \
+  --dump-date DATE
+```
+

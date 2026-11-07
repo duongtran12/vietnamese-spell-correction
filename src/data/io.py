@@ -79,10 +79,24 @@ def _atomic_write(path: Path, content: str) -> None:
 def write_jsonl(path: str | Path, records: Iterable[Mapping[str, Any]]) -> None:
     """Write JSON objects atomically as UTF-8 JSONL."""
 
-    content = "".join(
-        json.dumps(record, ensure_ascii=False) + "\n" for record in records
-    )
-    _atomic_write(Path(path), content)
+    output_path = Path(path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    temporary_path: Path | None = None
+    try:
+        with NamedTemporaryFile(
+            "w",
+            encoding="utf-8",
+            newline="\n",
+            dir=output_path.parent,
+            delete=False,
+        ) as handle:
+            temporary_path = Path(handle.name)
+            for record in records:
+                handle.write(json.dumps(record, ensure_ascii=False) + "\n")
+        os.replace(temporary_path, output_path)
+    finally:
+        if temporary_path is not None and temporary_path.exists():
+            temporary_path.unlink()
 
 
 def write_json(path: str | Path, data: Any) -> None:
