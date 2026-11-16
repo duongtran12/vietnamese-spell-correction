@@ -55,6 +55,9 @@ def main() -> None:
         trigram_artifact=args.trigram,
         detector_threshold=float(inference_config.get("detector_threshold", 0.5)),
         minimum_rank_margin=float(inference_config.get("minimum_rank_margin", 0.0)),
+        title_case_diacritic_rank_margin=float(
+            inference_config.get("title_case_diacritic_rank_margin", 0.5)
+        ),
         keep_original_bonus=float(inference_config.get("keep_original_bonus", 0.75)),
         candidate_pool_size=int(inference_config.get("candidate_pool_size", 5)),
         top_k_suggestions=int(inference_config.get("top_k_suggestions", 3)),

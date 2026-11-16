@@ -693,6 +693,20 @@ Chi tiết và giới hạn của thí nghiệm nằm trong `reports/VIWIKI_SMOK
 - Luôn thêm phương án giữ nguyên vào danh sách xếp hạng.
 - Không còn ép token OOV phải đổi thành từ gần nhất.
 - Xếp hạng thêm ứng viên casefold và khôi phục kiểu viết hoa khi hiển thị.
-- Dùng rank margin mặc định `0.5` để giảm sửa nhầm token đúng.
+- Dùng rank margin đã tune `0.75` để giảm sửa nhầm token đúng.
+- Dùng margin riêng `0.5` cho ứng viên viết hoa chỉ khác dấu ở đầu câu.
 - Thêm prior giữ nguyên và ưu tiên ứng viên chỉ khác dấu khi phù hợp.
+
+### Mốc 12 — Retrain sau near-dedup và tune inference
+
+Đã hoàn thành:
+
+- Huấn luyện lại Trigram LM và BiLSTM từ đầu trên split đã lọc near-duplicate.
+- Thêm cache cho candidate generator để tái sử dụng kết quả sinh ứng viên.
+- Thêm `scripts/tune_inference.py` để quét detector threshold và rank margin trên validation.
+- Chọn `detector_threshold=0.6` và `minimum_rank_margin=0.75` với giới hạn false-correction rate tối đa 2%.
+- Validation Correction F1 đạt 46,34%, Sentence Accuracy đạt 53,85% và false-correction rate còn 0,87%.
+- Giữ nguyên test split, chưa dùng để tune hoặc báo cáo kết quả cuối.
+
+Chi tiết nằm trong `reports/VIWIKI_SMOKE_DEDUP_20261101.md`.
 

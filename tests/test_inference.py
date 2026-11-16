@@ -95,7 +95,8 @@ def test_pipeline_restores_title_case_after_ranking_lowercase_candidate() -> Non
         CandidateGenerator({"hôm": 10, "họp": 1}),
         CandidateRanker(language_model),
         detector_threshold=0.5,
-        minimum_rank_margin=0.0,
+        minimum_rank_margin=0.75,
+        title_case_diacritic_rank_margin=0.5,
         keep_original_bonus=0.75,
     )
 

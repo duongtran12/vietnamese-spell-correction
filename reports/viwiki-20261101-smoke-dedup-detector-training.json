@@ -1,0 +1,172 @@
+{
+  "best_epoch": 7,
+  "best_validation_f1": 0.28195937873357224,
+  "epochs_completed": 11,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.23840893166405813,
+      "validation": {
+        "true_positive": 121,
+        "false_positive": 642,
+        "false_negative": 14,
+        "true_negative": 5359,
+        "precision": 0.15858453473132372,
+        "recall": 0.8962962962962963,
+        "f1": 0.26948775055679286,
+        "loss": 0.5353886820375919,
+        "tokens": 6136
+      }
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.11940297091172801,
+      "validation": {
+        "true_positive": 121,
+        "false_positive": 634,
+        "false_negative": 14,
+        "true_negative": 5367,
+        "precision": 0.16026490066225166,
+        "recall": 0.8962962962962963,
+        "f1": 0.27191011235955054,
+        "loss": 0.5803065225481987,
+        "tokens": 6136
+      }
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.08188259937164802,
+      "validation": {
+        "true_positive": 121,
+        "false_positive": 626,
+        "false_negative": 14,
+        "true_negative": 5375,
+        "precision": 0.16198125836680052,
+        "recall": 0.8962962962962963,
+        "f1": 0.2743764172335601,
+        "loss": 0.66495605930686,
+        "tokens": 6136
+      }
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.051914314798537704,
+      "validation": {
+        "true_positive": 119,
+        "false_positive": 602,
+        "false_negative": 16,
+        "true_negative": 5399,
+        "precision": 0.1650485436893204,
+        "recall": 0.8814814814814815,
+        "f1": 0.27803738317757015,
+        "loss": 0.7955659627914429,
+        "tokens": 6136
+      }
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.03516615807477917,
+      "validation": {
+        "true_positive": 119,
+        "false_positive": 615,
+        "false_negative": 16,
+        "true_negative": 5386,
+        "precision": 0.16212534059945505,
+        "recall": 0.8814814814814815,
+        "f1": 0.27387802071346373,
+        "loss": 0.8786657564342022,
+        "tokens": 6136
+      }
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.03141778489086954,
+      "validation": {
+        "true_positive": 118,
+        "false_positive": 601,
+        "false_negative": 17,
+        "true_negative": 5400,
+        "precision": 0.16411682892906815,
+        "recall": 0.8740740740740741,
+        "f1": 0.2763466042154567,
+        "loss": 0.9210591614246368,
+        "tokens": 6136
+      }
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.020247202610508316,
+      "validation": {
+        "true_positive": 118,
+        "false_positive": 584,
+        "false_negative": 17,
+        "true_negative": 5417,
+        "precision": 0.16809116809116809,
+        "recall": 0.8740740740740741,
+        "f1": 0.28195937873357224,
+        "loss": 0.9964718706905842,
+        "tokens": 6136
+      }
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.013804313556719867,
+      "validation": {
+        "true_positive": 118,
+        "false_positive": 603,
+        "false_negative": 17,
+        "true_negative": 5398,
+        "precision": 0.1636615811373093,
+        "recall": 0.8740740740740741,
+        "f1": 0.2757009345794393,
+        "loss": 1.0953344851732254,
+        "tokens": 6136
+      }
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.01146114989560807,
+      "validation": {
+        "true_positive": 120,
+        "false_positive": 614,
+        "false_negative": 15,
+        "true_negative": 5387,
+        "precision": 0.16348773841961853,
+        "recall": 0.8888888888888888,
+        "f1": 0.2761795166858458,
+        "loss": 1.1801613122224808,
+        "tokens": 6136
+      }
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.009010457548327626,
+      "validation": {
+        "true_positive": 119,
+        "false_positive": 596,
+        "false_negative": 16,
+        "true_negative": 5405,
+        "precision": 0.16643356643356644,
+        "recall": 0.8814814814814815,
+        "f1": 0.27999999999999997,
+        "loss": 1.2205437757074833,
+        "tokens": 6136
+      }
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.006726073811203981,
+      "validation": {
+        "true_positive": 119,
+        "false_positive": 608,
+        "false_negative": 16,
+        "true_negative": 5393,
+        "precision": 0.16368638239339753,
+        "recall": 0.8814814814814815,
+        "f1": 0.2761020881670534,
+        "loss": 1.288292519748211,
+        "tokens": 6136
+      }
+    }
+  ]
+}

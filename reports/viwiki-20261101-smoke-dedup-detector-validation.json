@@ -1,0 +1,16 @@
+{
+  "checkpoint": "artifacts\\viwiki-20261101-smoke-dedup-detector.pt",
+  "data": "data\\processed\\viwiki-20261101-smoke-dedup\\validation.jsonl",
+  "threshold": 0.5,
+  "metrics": {
+    "true_positive": 118,
+    "false_positive": 584,
+    "false_negative": 17,
+    "true_negative": 5417,
+    "precision": 0.16809116809116809,
+    "recall": 0.8740740740740741,
+    "f1": 0.28195937873357224,
+    "loss": 0.9964718706905842,
+    "tokens": 6136
+  }
+}

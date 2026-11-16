@@ -73,6 +73,7 @@ class CandidateGenerator:
         self.short_token_max_distance = short_token_max_distance
         self.long_token_max_distance = long_token_max_distance
         self._tokens_by_length: dict[int, list[str]] = defaultdict(list)
+        self._generation_cache: dict[tuple[str, int], tuple[Candidate, ...]] = {}
         for token in sorted(self.frequencies):
             self._tokens_by_length[len(token)].append(token)
 
@@ -88,6 +89,11 @@ class CandidateGenerator:
             raise TypeError("token must be a string")
         if top_k < 1:
             raise ValueError("top_k must be positive")
+
+        cache_key = (token, top_k)
+        cached = self._generation_cache.get(cache_key)
+        if cached is not None:
+            return list(cached)
 
         max_distance = self.max_distance_for(token)
         candidates: list[Candidate] = []
@@ -116,5 +122,7 @@ class CandidateGenerator:
                 candidate.token,
             )
         )
-        return candidates[:top_k]
+        result = tuple(candidates[:top_k])
+        self._generation_cache[cache_key] = result
+        return list(result)
 

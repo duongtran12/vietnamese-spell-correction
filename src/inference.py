@@ -64,6 +64,7 @@ class SpellingCorrectionPipeline:
         *,
         detector_threshold: float = 0.5,
         minimum_rank_margin: float = 0.0,
+        title_case_diacritic_rank_margin: float = 0.5,
         keep_original_bonus: float = 0.75,
         candidate_pool_size: int = 5,
         top_k_suggestions: int = 3,
@@ -73,6 +74,8 @@ class SpellingCorrectionPipeline:
             raise ValueError("detector_threshold must be between 0 and 1")
         if minimum_rank_margin < 0:
             raise ValueError("minimum_rank_margin must be non-negative")
+        if title_case_diacritic_rank_margin < 0:
+            raise ValueError("title-case diacritic rank margin must be non-negative")
         if keep_original_bonus < 0:
             raise ValueError("keep_original_bonus must be non-negative")
         if candidate_pool_size < 1 or top_k_suggestions < 1:
@@ -88,6 +91,7 @@ class SpellingCorrectionPipeline:
         self.ranker = ranker
         self.detector_threshold = detector_threshold
         self.minimum_rank_margin = minimum_rank_margin
+        self.title_case_diacritic_rank_margin = title_case_diacritic_rank_margin
         self.keep_original_bonus = keep_original_bonus
         self.candidate_pool_size = candidate_pool_size
         self.top_k_suggestions = top_k_suggestions
@@ -136,8 +140,19 @@ class SpellingCorrectionPipeline:
             if suggestions:
                 if len(suggestions) > 1:
                     rank_margin = suggestions[0].total_score - suggestions[1].total_score
+                required_margin = self.minimum_rank_margin
+                if (
+                    original_token.istitle()
+                    and suggestions[0].token != original_token
+                    and _diacritic_skeleton(suggestions[0].token)
+                    == _diacritic_skeleton(original_token)
+                ):
+                    required_margin = min(
+                        required_margin,
+                        self.title_case_diacritic_rank_margin,
+                    )
                 has_sufficient_margin = (
-                    rank_margin is None or rank_margin >= self.minimum_rank_margin
+                    rank_margin is None or rank_margin >= required_margin
                 )
                 if has_sufficient_margin:
                     applied_token = suggestions[0].token
@@ -264,6 +279,7 @@ class SpellingCorrectionPipeline:
         trigram_artifact: str | Path,
         detector_threshold: float = 0.5,
         minimum_rank_margin: float = 0.0,
+        title_case_diacritic_rank_margin: float = 0.5,
         keep_original_bonus: float = 0.75,
         candidate_pool_size: int = 5,
         top_k_suggestions: int = 3,
@@ -323,6 +339,7 @@ class SpellingCorrectionPipeline:
             ranker,
             detector_threshold=detector_threshold,
             minimum_rank_margin=minimum_rank_margin,
+            title_case_diacritic_rank_margin=title_case_diacritic_rank_margin,
             keep_original_bonus=keep_original_bonus,
             candidate_pool_size=candidate_pool_size,
             top_k_suggestions=top_k_suggestions,

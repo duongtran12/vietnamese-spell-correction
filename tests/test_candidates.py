@@ -36,3 +36,13 @@ def test_candidate_generator_validates_top_k() -> None:
     with pytest.raises(ValueError, match="positive"):
         generator.generate("họ", top_k=0)
 
+
+def test_candidate_generator_cache_returns_an_independent_list() -> None:
+    generator = CandidateGenerator({"học": 10, "họp": 5})
+
+    first = generator.generate("họ", top_k=2)
+    first.clear()
+    second = generator.generate("họ", top_k=2)
+
+    assert [candidate.token for candidate in second] == ["học", "họp"]
+
