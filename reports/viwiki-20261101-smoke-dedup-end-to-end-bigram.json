@@ -11,13 +11,13 @@
   },
   "correction": {
     "correct_changes": 56,
-    "all_changes": 132,
-    "precision": 0.42424242424242425,
+    "all_changes": 131,
+    "precision": 0.42748091603053434,
     "recall": 0.4148148148148148,
-    "f1": 0.4194756554307116,
+    "f1": 0.4210526315789474,
     "accuracy_at_1": 0.4148148148148148,
     "accuracy_at_3": 0.6370370370370371
   },
   "sentence_accuracy": 0.5085470085470085,
-  "false_correction_rate": 0.012164639226795533
+  "false_correction_rate": 0.011998000333277787
 }

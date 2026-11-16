@@ -150,12 +150,21 @@ class SpellingCorrectionPipeline:
                     and _diacritic_skeleton(suggestions[0].token)
                     == _diacritic_skeleton(original_token)
                 )
-                if is_diacritic_only:
+                original_is_known = (
+                    original_token in self.candidate_generator.frequencies
+                    or original_token.casefold()
+                    in self.candidate_generator.frequencies
+                )
+                if is_diacritic_only and not original_is_known:
                     required_margin = min(
                         required_margin,
                         self.diacritic_rank_margin,
                     )
-                if original_token.istitle() and is_diacritic_only:
+                if (
+                    original_token.istitle()
+                    and is_diacritic_only
+                    and not original_is_known
+                ):
                     required_margin = min(
                         required_margin,
                         self.title_case_diacritic_rank_margin,

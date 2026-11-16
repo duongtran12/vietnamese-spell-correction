@@ -55,9 +55,9 @@ All variants use the same 135 validation error examples and candidate pool:
 - Trigram context: Accuracy@1 62.22%, Accuracy@3 74.07%.
 
 Frequency did not improve Top-1 ranking on this validation split. Removing it
-also improved end-to-end Correction F1 from 46.34% to 47.58% and reduced the
-false-correction rate from 0.87% to 0.60%. Bigram-only context ranked known
-error positions well but reduced end-to-end Correction F1 to 41.95%, so the
+also improved end-to-end Correction F1 from 46.34% to 47.79% and reduced the
+false-correction rate from 0.87% to 0.58%. Bigram-only context ranked known
+error positions well but reduced end-to-end Correction F1 to 42.11%, so the
 interpolated language model remains selected.
 
 Full selected-ranker Accuracy@1 by synthetic error type:
@@ -104,25 +104,29 @@ Selected configuration:
 - Keep-original bonus: 0.75.
 - Frequency weight: 0.00.
 
-The title-case margin applies only when the leading candidate preserves the
-case pattern and differs only in Vietnamese diacritics. This retains safe
-corrections such as `Hộm` to `Hôm` without lowering the global margin.
+The lower diacritic margins apply only when the original token is absent from
+the train dictionary and the leading candidate preserves the character
+skeleton. Known train words retain the global margin. This supports corrections
+such as `Hộm` to `Hôm` without weakening protection for known valid words.
 
 ## Tuned end-to-end validation
 
 - Detection ERROR precision: 17.03%.
 - Detection ERROR recall: 87.41%.
 - Detection ERROR-F1: 28.50%.
-- Correction precision: 58.70%.
+- Correction precision: 59.34%.
 - Correction recall / Accuracy@1: 40.00%.
-- Correction F1: 47.58%.
+- Correction F1: 47.79%.
 - Accuracy@3: 64.44%.
-- Sentence accuracy: 55.98%.
-- False-correction rate: 0.60%.
+- Sentence accuracy: 55.56%.
+- False-correction rate: 0.58%.
 
 Compared with the previous selected configuration with frequency scoring,
-correction F1 increased from 46.34% to 47.58% while the false-correction rate
-decreased from 0.87% to 0.60%.
+correction F1 increased from 46.34% to 47.79% while the false-correction rate
+decreased from 0.87% to 0.58%.
+
+The detailed detector/correction breakdown and representative failures are in
+`reports/VIWIKI_SMOKE_DEDUP_ERROR_ANALYSIS.md`.
 
 ## Local artifacts
 

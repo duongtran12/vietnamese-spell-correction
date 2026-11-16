@@ -1,0 +1,860 @@
+{
+  "sentences": 234,
+  "detector_confusion_matrix": {
+    "true_positive": 118,
+    "false_positive": 575,
+    "false_negative": 17,
+    "true_negative": 5426
+  },
+  "outcome_counts": {
+    "correct_correction": 54,
+    "wrong_correction": 2,
+    "detected_kept": 62,
+    "missed_detection": 17,
+    "false_correction": 35,
+    "false_positive_kept": 540
+  },
+  "by_error_type": {
+    "delete": {
+      "total": 35,
+      "detected": 25,
+      "top3_hit": 15,
+      "corrected": 9,
+      "wrong_correction": 2,
+      "detected_kept": 14,
+      "missed_detection": 10,
+      "detection_recall": 0.7142857142857143,
+      "top3_recall": 0.42857142857142855,
+      "correction_recall": 0.2571428571428571
+    },
+    "diacritic": {
+      "total": 13,
+      "detected": 9,
+      "top3_hit": 9,
+      "corrected": 4,
+      "wrong_correction": 0,
+      "detected_kept": 5,
+      "missed_detection": 4,
+      "detection_recall": 0.6923076923076923,
+      "top3_recall": 0.6923076923076923,
+      "correction_recall": 0.3076923076923077
+    },
+    "insert": {
+      "total": 40,
+      "detected": 37,
+      "top3_hit": 29,
+      "corrected": 17,
+      "wrong_correction": 0,
+      "detected_kept": 20,
+      "missed_detection": 3,
+      "detection_recall": 0.925,
+      "top3_recall": 0.725,
+      "correction_recall": 0.425
+    },
+    "substitute": {
+      "total": 21,
+      "detected": 21,
+      "top3_hit": 12,
+      "corrected": 9,
+      "wrong_correction": 0,
+      "detected_kept": 12,
+      "missed_detection": 0,
+      "detection_recall": 1.0,
+      "top3_recall": 0.5714285714285714,
+      "correction_recall": 0.42857142857142855
+    },
+    "transpose": {
+      "total": 26,
+      "detected": 26,
+      "top3_hit": 22,
+      "corrected": 15,
+      "wrong_correction": 0,
+      "detected_kept": 11,
+      "missed_detection": 0,
+      "detection_recall": 1.0,
+      "top3_recall": 0.8461538461538461,
+      "correction_recall": 0.5769230769230769
+    }
+  },
+  "examples": {
+    "correct_correction": [
+      {
+        "sentence_id": "viwiki-5422138-s00001",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 4,
+        "operation": "diacritic",
+        "noisy_token": "nạm",
+        "clean_token": "nam",
+        "applied_token": "nam",
+        "detector_confidence": 0.999264657497406,
+        "suggestions": [
+          "nam",
+          "năm",
+          "nạm"
+        ],
+        "context": "Đội tuyển bóng chuyền nạm quốc gia Thổ Nhĩ"
+      },
+      {
+        "sentence_id": "viwiki-5422138-s00002",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 8,
+        "operation": "delete",
+        "noisy_token": "ội",
+        "clean_token": "đội",
+        "applied_token": "đội",
+        "detector_confidence": 0.9999716281890869,
+        "suggestions": [
+          "đội",
+          "ội",
+          "hội"
+        ],
+        "context": "sách các thành viên ội tuyển nam quốc gia"
+      },
+      {
+        "sentence_id": "viwiki-5422138-s00008",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 4,
+        "operation": "insert",
+        "noisy_token": "gnữ",
+        "clean_token": "nữ",
+        "applied_token": "nữ",
+        "detector_confidence": 0.9997804760932922,
+        "suggestions": [
+          "nữ",
+          "gnữ",
+          "ngữ"
+        ],
+        "context": "Đội tuyển bóng chuyền gnữ quốc gia Thổ Nhĩ"
+      },
+      {
+        "sentence_id": "viwiki-5908555-s00001",
+        "document_title": "Cầu lông tại Đại hội Thể thao Đông Nam Á 2017 - Đồng đội nam",
+        "token_index": 21,
+        "operation": "diacritic",
+        "noisy_token": "chữc",
+        "clean_token": "chức",
+        "applied_token": "chức",
+        "detector_confidence": 0.9999607801437378,
+        "suggestions": [
+          "chức",
+          "chữc"
+        ],
+        "context": "Kuala Lumpur sẽ tổ chữc từ ngày 23 tháng"
+      },
+      {
+        "sentence_id": "viwiki-5456734-s00002",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Slovakia",
+        "token_index": 2,
+        "operation": "insert",
+        "noisy_token": "chuyêền",
+        "clean_token": "chuyền",
+        "applied_token": "chuyền",
+        "detector_confidence": 0.9999966621398926,
+        "suggestions": [
+          "chuyền",
+          "chuyêền",
+          "chuyển"
+        ],
+        "context": "Giải bóng chuyêền vô địch châu Âu"
+      },
+      {
+        "sentence_id": "viwiki-5456734-s00003",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Slovakia",
+        "token_index": 14,
+        "operation": "delete",
+        "noisy_token": "tha",
+        "clean_token": "tham",
+        "applied_token": "tham",
+        "detector_confidence": 0.9998949766159058,
+        "suggestions": [
+          "tham",
+          "tha",
+          "thể"
+        ],
+        "context": "nam quốc gia Slovakia tha dự giải World League"
+      },
+      {
+        "sentence_id": "viwiki-5456734-s00004",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Slovakia",
+        "token_index": 2,
+        "operation": "insert",
+        "noisy_token": "viêtn",
+        "clean_token": "viên",
+        "applied_token": "viên",
+        "detector_confidence": 0.9999313354492188,
+        "suggestions": [
+          "viên",
+          "viêtn",
+          "tiên"
+        ],
+        "context": "Huấn luyện viêtn chính : Andrej Kravarik"
+      },
+      {
+        "sentence_id": "viwiki-5383612-s00006",
+        "document_title": "Giuse Dương Vĩnh Cường",
+        "token_index": 6,
+        "operation": "transpose",
+        "noisy_token": "htáng",
+        "clean_token": "tháng",
+        "applied_token": "tháng",
+        "detector_confidence": 0.9999837875366211,
+        "suggestions": [
+          "tháng",
+          "htáng",
+          "thông"
+        ],
+        "context": "gian tu tập , htáng 6 năm 1995 ,"
+      },
+      {
+        "sentence_id": "viwiki-5383612-s00009",
+        "document_title": "Giuse Dương Vĩnh Cường",
+        "token_index": 5,
+        "operation": "substitute",
+        "noisy_token": "củâ",
+        "clean_token": "của",
+        "applied_token": "của",
+        "detector_confidence": 0.9999978542327881,
+        "suggestions": [
+          "của",
+          "củâ"
+        ],
+        "context": "tấn phong giám mục củâ ông được tổ chức"
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00007",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 30,
+        "operation": "insert",
+        "noisy_token": "ơcũng",
+        "clean_token": "cũng",
+        "applied_token": "cũng",
+        "detector_confidence": 0.9999974966049194,
+        "suggestions": [
+          "cũng",
+          "ơcũng",
+          "công"
+        ],
+        "context": "lại của bộ phim ơcũng không bị ảnh hưởng"
+      }
+    ],
+    "wrong_correction": [
+      {
+        "sentence_id": "viwiki-4598567-s00014",
+        "document_title": "Lở đất Sierra Leone 2017",
+        "token_index": 25,
+        "operation": "delete",
+        "noisy_token": "lt",
+        "clean_token": "lụt",
+        "applied_token": "là",
+        "detector_confidence": 0.9994723200798035,
+        "suggestions": [
+          "là",
+          "lọt",
+          "lt"
+        ],
+        "context": "bởi lở đất và lt lội ."
+      },
+      {
+        "sentence_id": "viwiki-5150324-s00047",
+        "document_title": "Báo và Đài Phát thanh – Truyền hình Long An",
+        "token_index": 7,
+        "operation": "delete",
+        "noisy_token": "VB",
+        "clean_token": "DVB",
+        "applied_token": "VÀ",
+        "detector_confidence": 0.9982728958129883,
+        "suggestions": [
+          "VÀ",
+          "VB",
+          "VỀ"
+        ],
+        "context": "88 và phủ sóng VB - T2"
+      }
+    ],
+    "detected_kept": [
+      {
+        "sentence_id": "viwiki-5422138-s00003",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 5,
+        "operation": "insert",
+        "noisy_token": "Jošako",
+        "clean_token": "Joško",
+        "applied_token": "Jošako",
+        "detector_confidence": 0.9999483823776245,
+        "suggestions": [
+          "Jošako"
+        ],
+        "context": "luyện viên chính : Jošako Milenkoski"
+      },
+      {
+        "sentence_id": "viwiki-5422138-s00007",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 4,
+        "operation": "insert",
+        "noisy_token": "Basicd",
+        "clean_token": "Basic",
+        "applied_token": "Basicd",
+        "detector_confidence": 0.9997332692146301,
+        "suggestions": [
+          "Basicd"
+        ],
+        "context": "2010 – 13 Veljko Basicd"
+      },
+      {
+        "sentence_id": "viwiki-5908555-s00003",
+        "document_title": "Cầu lông tại Đại hội Thể thao Đông Nam Á 2017 - Đồng đội nam",
+        "token_index": 4,
+        "operation": "insert",
+        "noisy_token": "nữh",
+        "clean_token": "nữ",
+        "applied_token": "nữh",
+        "detector_confidence": 0.9999980926513672,
+        "suggestions": [
+          "nữh",
+          "nữ",
+          "nữa"
+        ],
+        "context": "Giải đấu đồng đội nữh"
+      },
+      {
+        "sentence_id": "viwiki-5383612-s00003",
+        "document_title": "Giuse Dương Vĩnh Cường",
+        "token_index": 24,
+        "operation": "insert",
+        "noisy_token": "chop",
+        "clean_token": "cho",
+        "applied_token": "chop",
+        "detector_confidence": 0.9999810457229614,
+        "suggestions": [
+          "cho",
+          "chop",
+          "chụp"
+        ],
+        "context": "mục chính tòa \" chop Hàng Châu , được"
+      },
+      {
+        "sentence_id": "viwiki-5383612-s00005",
+        "document_title": "Giuse Dương Vĩnh Cường",
+        "token_index": 2,
+        "operation": "insert",
+        "noisy_token": "Dxương",
+        "clean_token": "Dương",
+        "applied_token": "Dxương",
+        "detector_confidence": 0.9999953508377075,
+        "suggestions": [
+          "Chương",
+          "Vương",
+          "Thương"
+        ],
+        "context": "Giám mục Dxương sinh ngày 11 tháng"
+      },
+      {
+        "sentence_id": "viwiki-5383612-s00013",
+        "document_title": "Giuse Dương Vĩnh Cường",
+        "token_index": 32,
+        "operation": "insert",
+        "noisy_token": "cùnpg",
+        "clean_token": "cùng",
+        "applied_token": "cùnpg",
+        "detector_confidence": 0.9999727010726929,
+        "suggestions": [
+          "cùng",
+          "cùnpg",
+          "công"
+        ],
+        "context": "ngày 22 tháng 6 cùnpg năm ."
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00001",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 36,
+        "operation": "delete",
+        "noisy_token": "dah",
+        "clean_token": "danh",
+        "applied_token": "dah",
+        "detector_confidence": 0.9999349117279053,
+        "suggestions": [
+          "dah",
+          "danh",
+          "da"
+        ],
+        "context": "hoặc một phần của dah đề kết thúc ,"
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00002",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 9,
+        "operation": "delete",
+        "noisy_token": "ài",
+        "clean_token": "hài",
+        "applied_token": "ài",
+        "detector_confidence": 0.9999960660934448,
+        "suggestions": [
+          "dài",
+          "ài",
+          "bài"
+        ],
+        "context": "có tính chất gây ài hoặc mang gợi ý"
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00004",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 10,
+        "operation": "delete",
+        "noisy_token": "credi",
+        "clean_token": "credit",
+        "applied_token": "credi",
+        "detector_confidence": 0.9988135099411011,
+        "suggestions": [
+          "credi",
+          "Verdi"
+        ],
+        "context": "đầu tiên của after credi trong một bộ phim"
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00021",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 41,
+        "operation": "substitute",
+        "noisy_token": "Daredâvil",
+        "clean_token": "Daredevil",
+        "applied_token": "Daredâvil",
+        "detector_confidence": 0.9999297857284546,
+        "suggestions": [
+          "Daredâvil"
+        ],
+        "context": "bị đánh bại bởi Daredâvil ."
+      }
+    ],
+    "missed_detection": [
+      {
+        "sentence_id": "viwiki-5383612-s00001",
+        "document_title": "Giuse Dương Vĩnh Cường",
+        "token_index": 8,
+        "operation": "insert",
+        "noisy_token": "Yeong",
+        "clean_token": "Yong",
+        "applied_token": "Yeong",
+        "detector_confidence": null,
+        "suggestions": [],
+        "context": "( , Joseph Yang Yeong - qiang ; sinh"
+      },
+      {
+        "sentence_id": "viwiki-5383612-s00010",
+        "document_title": "Giuse Dương Vĩnh Cường",
+        "token_index": 10,
+        "operation": "insert",
+        "noisy_token": "hominids",
+        "clean_token": "hominis",
+        "applied_token": "hominids",
+        "detector_confidence": null,
+        "suggestions": [],
+        "context": "giám mục là Filius hominids non venit ministrari sed"
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00003",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 36,
+        "operation": "diacritic",
+        "noisy_token": "ánh",
+        "clean_token": "anh",
+        "applied_token": "ánh",
+        "detector_confidence": null,
+        "suggestions": [],
+        "context": "giả ( sau khi ánh ta đã bị giết"
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00005",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 4,
+        "operation": "diacritic",
+        "noisy_token": "bố",
+        "clean_token": "bộ",
+        "applied_token": "bố",
+        "detector_confidence": null,
+        "suggestions": [],
+        "context": "Vào năm 1980 , bố phim Airplane !"
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00010",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 13,
+        "operation": "delete",
+        "noisy_token": "cản",
+        "clean_token": "cảnh",
+        "applied_token": "cản",
+        "detector_confidence": null,
+        "suggestions": [],
+        "context": ") cũng nhại lại cản hậu danh đề kinh"
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00030",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 2,
+        "operation": "delete",
+        "noisy_token": "rò",
+        "clean_token": "trò",
+        "applied_token": "rò",
+        "detector_confidence": null,
+        "suggestions": [],
+        "context": "Trong các rò chơi điện tử"
+      },
+      {
+        "sentence_id": "viwiki-4823262-s00035",
+        "document_title": "Г",
+        "token_index": 4,
+        "operation": "delete",
+        "noisy_token": "t",
+        "clean_token": "tự",
+        "applied_token": "t",
+        "detector_confidence": null,
+        "suggestions": [],
+        "context": "Ґ ґ : Mẫu t Γ với dấu nháy"
+      },
+      {
+        "sentence_id": "viwiki-5922418-s00011",
+        "document_title": "Bắn cung tại Đại hội Thể thao Đông Nam Á 2017 - Kết quả",
+        "token_index": 4,
+        "operation": "delete",
+        "noisy_token": "đi",
+        "clean_token": "đội",
+        "applied_token": "đi",
+        "detector_confidence": null,
+        "suggestions": [],
+        "context": "Cung ba dây đồng đi nam nữ"
+      },
+      {
+        "sentence_id": "viwiki-6050009-s00001",
+        "document_title": "OPI Products",
+        "token_index": 16,
+        "operation": "delete",
+        "noisy_token": "hà",
+        "clean_token": "nhà",
+        "applied_token": "hà",
+        "detector_confidence": null,
+        "suggestions": [],
+        "context": "I , là một hà sản xuất sơn móng"
+      },
+      {
+        "sentence_id": "viwiki-5150324-s00013",
+        "document_title": "Báo và Đài Phát thanh – Truyền hình Long An",
+        "token_index": 20,
+        "operation": "delete",
+        "noisy_token": "tên",
+        "clean_token": "trên",
+        "applied_token": "tên",
+        "detector_confidence": null,
+        "suggestions": [],
+        "context": "Long An , phát tên kênh 34 UHF nên"
+      }
+    ],
+    "false_correction": [
+      {
+        "sentence_id": "viwiki-5422138-s00001",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 7,
+        "operation": null,
+        "noisy_token": "Thổ",
+        "clean_token": "Thổ",
+        "applied_token": "Thi",
+        "detector_confidence": 0.9982542395591736,
+        "suggestions": [
+          "Thi",
+          "Thế",
+          "Thể"
+        ],
+        "context": "chuyền nạm quốc gia Thổ Nhĩ Kỳ là đội"
+      },
+      {
+        "sentence_id": "viwiki-5422138-s00002",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 13,
+        "operation": null,
+        "noisy_token": "Thổ",
+        "clean_token": "Thổ",
+        "applied_token": "Thi",
+        "detector_confidence": 0.9999843835830688,
+        "suggestions": [
+          "Thi",
+          "Thế",
+          "Thể"
+        ],
+        "context": "tuyển nam quốc gia Thổ Nhĩ Kỳ tham dự"
+      },
+      {
+        "sentence_id": "viwiki-5422138-s00008",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 7,
+        "operation": null,
+        "noisy_token": "Thổ",
+        "clean_token": "Thổ",
+        "applied_token": "Thi",
+        "detector_confidence": 0.99991774559021,
+        "suggestions": [
+          "Thi",
+          "Thế",
+          "Thể"
+        ],
+        "context": "chuyền gnữ quốc gia Thổ Nhĩ Kỳ"
+      },
+      {
+        "sentence_id": "viwiki-5456734-s00004",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Slovakia",
+        "token_index": 5,
+        "operation": null,
+        "noisy_token": "Andrej",
+        "clean_token": "Andrej",
+        "applied_token": "Andrea",
+        "detector_confidence": 0.9906315803527832,
+        "suggestions": [
+          "Andrea",
+          "Andrej",
+          "Andrew"
+        ],
+        "context": "luyện viêtn chính : Andrej Kravarik"
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00020",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 0,
+        "operation": null,
+        "noisy_token": "Ngay",
+        "clean_token": "Ngay",
+        "applied_token": "Ngày",
+        "detector_confidence": 0.999996542930603,
+        "suggestions": [
+          "Ngày",
+          "Ngay"
+        ],
+        "context": "Ngay cả khi các cảnh"
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00022",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 49,
+        "operation": null,
+        "noisy_token": "X",
+        "clean_token": "X",
+        "applied_token": "Ở",
+        "detector_confidence": 0.9999561309814453,
+        "suggestions": [
+          "Ở",
+          "X",
+          "XE"
+        ],
+        "context": "tiết lộ Giáo sư X vẫn còn sống ."
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00023",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 6,
+        "operation": null,
+        "noisy_token": "sợi",
+        "clean_token": "sợi",
+        "applied_token": "sôi",
+        "detector_confidence": 0.9998818635940552,
+        "suggestions": [
+          "sôi",
+          "sợi"
+        ],
+        "context": "dụ khác là \" sợi dây nối \" ("
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00026",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 13,
+        "operation": null,
+        "noisy_token": "sợi",
+        "clean_token": "sợi",
+        "applied_token": "sôi",
+        "detector_confidence": 0.999021053314209,
+        "suggestions": [
+          "sôi",
+          "sợi"
+        ],
+        "context": "đã thiết lập \" sợi dây nối \" với"
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00027",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 55,
+        "operation": null,
+        "noisy_token": "lai",
+        "clean_token": "lai",
+        "applied_token": "lại",
+        "detector_confidence": 0.9882013201713562,
+        "suggestions": [
+          "lại",
+          "lai",
+          "lái"
+        ],
+        "context": "một tác phẩm tương lai của Marvel Studios ."
+      },
+      {
+        "sentence_id": "viwiki-4826623-s00028",
+        "document_title": "Cảnh hậu danh đề",
+        "token_index": 23,
+        "operation": null,
+        "noisy_token": "Câu",
+        "clean_token": "Câu",
+        "applied_token": "Cầu",
+        "detector_confidence": 0.9997474551200867,
+        "suggestions": [
+          "Cầu",
+          "Cậu",
+          "Cấu"
+        ],
+        "context": "( 1998 ) , Câu chuyện đồ chơi 2"
+      }
+    ],
+    "false_positive_kept": [
+      {
+        "sentence_id": "viwiki-5422138-s00001",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 16,
+        "operation": null,
+        "noisy_token": "Thổ",
+        "clean_token": "Thổ",
+        "applied_token": "Thổ",
+        "detector_confidence": 0.9999425411224365,
+        "suggestions": [
+          "Thể",
+          "Thứ",
+          "Thi"
+        ],
+        "context": "bóng đại diện cho Thổ Nhĩ Kỳ tại các"
+      },
+      {
+        "sentence_id": "viwiki-5422138-s00003",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 6,
+        "operation": null,
+        "noisy_token": "Milenkoski",
+        "clean_token": "Milenkoski",
+        "applied_token": "Milenkoski",
+        "detector_confidence": 0.9999003410339355,
+        "suggestions": [
+          "Milenkoski"
+        ],
+        "context": "viên chính : Jošako Milenkoski"
+      },
+      {
+        "sentence_id": "viwiki-5422138-s00004",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 3,
+        "operation": null,
+        "noisy_token": "Kosta",
+        "clean_token": "Kosta",
+        "applied_token": "Kosta",
+        "detector_confidence": 0.9999377727508545,
+        "suggestions": [
+          "Kosta",
+          "Korea",
+          "Most"
+        ],
+        "context": "1970 – 71 Kosta Shapov"
+      },
+      {
+        "sentence_id": "viwiki-5422138-s00004",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 4,
+        "operation": null,
+        "noisy_token": "Shapov",
+        "clean_token": "Shapov",
+        "applied_token": "Shapov",
+        "detector_confidence": 0.9998143315315247,
+        "suggestions": [
+          "Shapov",
+          "Sharon"
+        ],
+        "context": "1970 – 71 Kosta Shapov"
+      },
+      {
+        "sentence_id": "viwiki-5422138-s00005",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 2,
+        "operation": null,
+        "noisy_token": "08",
+        "clean_token": "08",
+        "applied_token": "08",
+        "detector_confidence": 0.9976565837860107,
+        "suggestions": [
+          "08"
+        ],
+        "context": "2006 – 08 Gennady Parshin"
+      },
+      {
+        "sentence_id": "viwiki-5422138-s00005",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 3,
+        "operation": null,
+        "noisy_token": "Gennady",
+        "clean_token": "Gennady",
+        "applied_token": "Gennady",
+        "detector_confidence": 0.9889945387840271,
+        "suggestions": [
+          "Gennady"
+        ],
+        "context": "2006 – 08 Gennady Parshin"
+      },
+      {
+        "sentence_id": "viwiki-5422138-s00005",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 4,
+        "operation": null,
+        "noisy_token": "Parshin",
+        "clean_token": "Parshin",
+        "applied_token": "Parshin",
+        "detector_confidence": 0.9905676245689392,
+        "suggestions": [
+          "Parshin",
+          "Baishin"
+        ],
+        "context": "2006 – 08 Gennady Parshin"
+      },
+      {
+        "sentence_id": "viwiki-5422138-s00006",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 3,
+        "operation": null,
+        "noisy_token": "Fausto",
+        "clean_token": "Fausto",
+        "applied_token": "Fausto",
+        "detector_confidence": 0.9999550580978394,
+        "suggestions": [
+          "Fausto",
+          "Masuto"
+        ],
+        "context": "2008 – 10 Fausto Polidori"
+      },
+      {
+        "sentence_id": "viwiki-5422138-s00006",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 4,
+        "operation": null,
+        "noisy_token": "Polidori",
+        "clean_token": "Polidori",
+        "applied_token": "Polidori",
+        "detector_confidence": 0.9998639822006226,
+        "suggestions": [
+          "Polidori"
+        ],
+        "context": "2008 – 10 Fausto Polidori"
+      },
+      {
+        "sentence_id": "viwiki-5422138-s00007",
+        "document_title": "Đội tuyển bóng chuyền nam quốc gia Thổ Nhĩ Kỳ",
+        "token_index": 3,
+        "operation": null,
+        "noisy_token": "Veljko",
+        "clean_token": "Veljko",
+        "applied_token": "Veljko",
+        "detector_confidence": 0.9999334812164307,
+        "suggestions": [
+          "Veljko"
+        ],
+        "context": "2010 – 13 Veljko Basicd"
+      }
+    ]
+  }
+}

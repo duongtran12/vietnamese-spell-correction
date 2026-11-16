@@ -39,6 +39,8 @@ reports/figures/*
 !reports/figures/.gitkeep
 !reports/figures/viwiki-20261101-smoke-dedup-ranker-ablation.png
 !reports/figures/viwiki-20261101-smoke-dedup-error-types.png
+!reports/figures/viwiki-20261101-smoke-dedup-detector-confusion.png
+!reports/figures/viwiki-20261101-smoke-dedup-correction-outcomes.png
 *.pt
 *.pth
 *.ckpt

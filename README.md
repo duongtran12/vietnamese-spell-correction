@@ -705,7 +705,7 @@ Chi tiết và giới hạn của thí nghiệm nằm trong `reports/VIWIKI_SMOK
 - Thêm cache cho candidate generator để tái sử dụng kết quả sinh ứng viên.
 - Thêm `scripts/tune_inference.py` để quét detector threshold và rank margin trên validation.
 - Chọn `detector_threshold=0.6` và `minimum_rank_margin=0.75` với giới hạn false-correction rate tối đa 2%.
-- Validation Correction F1 đạt 47,58%, Sentence Accuracy đạt 55,98% và false-correction rate còn 0,60%.
+- Validation Correction F1 đạt 47,79%, Sentence Accuracy đạt 55,56% và false-correction rate còn 0,58%.
 - Giữ nguyên test split, chưa dùng để tune hoặc báo cáo kết quả cuối.
 
 Chi tiết nằm trong `reports/VIWIKI_SMOKE_DEDUP_20261101.md`.
@@ -746,7 +746,7 @@ Nếu artifact nằm ở vị trí khác, có thể thay đường dẫn trong t
 - Context + edit đạt 65,93%, tăng 9,63 điểm phần trăm so với baseline.
 - Frequency score làm giảm nhẹ kết quả nên cấu hình chính đã đặt `frequency_weight=0.0`.
 - Bigram thuần tốt nhất ở ranking có vị trí lỗi biết trước, nhưng giảm chất lượng end-to-end.
-- Mô hình nội suy không frequency đạt end-to-end Correction F1 47,58%.
+- Mô hình nội suy không frequency đạt end-to-end Correction F1 47,79%.
 - Đã tạo biểu đồ so sánh ablation và Accuracy@1 theo từng loại lỗi.
 
 Chạy lại thí nghiệm:
@@ -759,4 +759,17 @@ python -m scripts.run_ablation \
   --figure reports/figures/viwiki-20261101-smoke-dedup-ranker-ablation.png \
   --error-figure reports/figures/viwiki-20261101-smoke-dedup-error-types.png
 ```
+
+### Mốc 15 — Error analysis
+
+Đã phân tích toàn bộ validation theo cả detector và kết quả sửa cuối:
+
+- 54 lỗi được sửa đúng, 2 lỗi bị sửa thành từ sai và 17 lỗi bị detector bỏ sót.
+- 62 lỗi được phát hiện nhưng giữ nguyên do chưa đủ margin.
+- Detector tạo 575 false positive, nhưng cơ chế an toàn giữ nguyên 540 trường hợp.
+- Chỉ 35 token đúng bị thay đổi, tương ứng false-correction rate 0,58%.
+- Đã lưu ví dụ sửa đúng, sửa sai, bỏ sót, false correction và false positive an toàn.
+- Đã tạo confusion matrix của BiLSTM và biểu đồ kết quả end-to-end.
+
+Chi tiết nằm trong `reports/VIWIKI_SMOKE_DEDUP_ERROR_ANALYSIS.md`.
 

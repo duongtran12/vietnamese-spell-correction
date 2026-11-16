@@ -127,3 +127,24 @@ def test_pipeline_uses_lower_margin_for_diacritic_only_candidate() -> None:
 
     assert result.corrected_text == "học nay"
 
+
+def test_pipeline_keeps_known_word_under_global_margin() -> None:
+    vocabulary = {"<PAD>": 0, "<UNK>": 1, "sợi": 2, "dây": 3}
+    language_model = TrigramLanguageModel().fit(
+        [["sôi", "dây"], ["sôi", "dây"], ["sợi", "khác"]]
+    )
+    pipeline = SpellingCorrectionPipeline(
+        TokenIdDetector(error_token_id=2),  # type: ignore[arg-type]
+        vocabulary,
+        CandidateGenerator({"sợi": 2, "sôi": 10}),
+        CandidateRanker(language_model),
+        detector_threshold=0.5,
+        minimum_rank_margin=100.0,
+        diacritic_rank_margin=0.0,
+        keep_original_bonus=0.0,
+    )
+
+    result = pipeline.correct_text("sợi dây")
+
+    assert result.corrected_text == "sợi dây"
+

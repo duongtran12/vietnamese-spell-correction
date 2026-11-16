@@ -103,9 +103,9 @@ def main() -> None:
         vocabulary_path = st.text_input("Vocabulary", str(DEFAULT_VOCABULARY))
         trigram_path = st.text_input("Trigram model", str(DEFAULT_TRIGRAM))
         st.divider()
-        st.metric("Validation Correction F1", "47,58%")
-        st.metric("Sentence Accuracy", "55,98%")
-        st.metric("False Correction Rate", "0,60%")
+        st.metric("Validation Correction F1", "47,79%")
+        st.metric("Sentence Accuracy", "55,56%")
+        st.metric("False Correction Rate", "0,58%")
         st.caption("Kết quả smoke validation; chưa phải kết quả test cuối.")
 
     example = st.selectbox(
