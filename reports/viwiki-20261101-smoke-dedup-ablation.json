@@ -1,0 +1,119 @@
+{
+  "split": "validation",
+  "examples": 135,
+  "target_oov_rate": 0.14074074074074075,
+  "candidate_recall_at_5": 0.7703703703703704,
+  "results": [
+    {
+      "name": "edit_distance_baseline",
+      "label": "Edit baseline",
+      "description": "Edit distance with frequency tie-breaking.",
+      "accuracy_at_1": 0.562962962962963,
+      "accuracy_at_3": 0.7037037037037037,
+      "delta_at_1_vs_baseline": 0.0
+    },
+    {
+      "name": "edit_frequency",
+      "label": "Edit + frequency",
+      "description": "Remove language-model context.",
+      "lambdas": [
+        0.1,
+        0.3,
+        0.6
+      ],
+      "context_weight": 0.0,
+      "edit_weight": 1.0,
+      "frequency_weight": 0.1,
+      "accuracy_at_1": 0.5481481481481482,
+      "accuracy_at_3": 0.7185185185185186,
+      "delta_at_1_vs_baseline": -0.014814814814814836
+    },
+    {
+      "name": "context_edit",
+      "label": "Context + edit",
+      "description": "Remove the explicit frequency score.",
+      "lambdas": [
+        0.1,
+        0.3,
+        0.6
+      ],
+      "context_weight": 1.0,
+      "edit_weight": 1.0,
+      "frequency_weight": 0.0,
+      "accuracy_at_1": 0.6592592592592592,
+      "accuracy_at_3": 0.7407407407407407,
+      "delta_at_1_vs_baseline": 0.09629629629629621
+    },
+    {
+      "name": "full_interpolated",
+      "label": "Full interpolated",
+      "description": "Use interpolated context, edit, and frequency scores.",
+      "lambdas": [
+        0.1,
+        0.3,
+        0.6
+      ],
+      "context_weight": 1.0,
+      "edit_weight": 1.0,
+      "frequency_weight": 0.1,
+      "accuracy_at_1": 0.6518518518518519,
+      "accuracy_at_3": 0.7407407407407407,
+      "delta_at_1_vs_baseline": 0.0888888888888889
+    },
+    {
+      "name": "unigram_context",
+      "label": "Unigram context",
+      "description": "Replace interpolated context with unigram probability only.",
+      "lambdas": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "context_weight": 1.0,
+      "edit_weight": 1.0,
+      "frequency_weight": 0.1,
+      "accuracy_at_1": 0.4888888888888889,
+      "accuracy_at_3": 0.7037037037037037,
+      "delta_at_1_vs_baseline": -0.07407407407407413
+    },
+    {
+      "name": "bigram_context",
+      "label": "Bigram context",
+      "description": "Replace interpolated context with bigram probability only.",
+      "lambdas": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "context_weight": 1.0,
+      "edit_weight": 1.0,
+      "frequency_weight": 0.1,
+      "accuracy_at_1": 0.6592592592592592,
+      "accuracy_at_3": 0.7555555555555555,
+      "delta_at_1_vs_baseline": 0.09629629629629621
+    },
+    {
+      "name": "trigram_context",
+      "label": "Trigram context",
+      "description": "Replace interpolated context with trigram probability only.",
+      "lambdas": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "context_weight": 1.0,
+      "edit_weight": 1.0,
+      "frequency_weight": 0.1,
+      "accuracy_at_1": 0.6222222222222222,
+      "accuracy_at_3": 0.7407407407407407,
+      "delta_at_1_vs_baseline": 0.059259259259259234
+    }
+  ],
+  "selected_accuracy_at_1_by_error_type": {
+    "delete": 0.5428571428571428,
+    "diacritic": 0.7692307692307693,
+    "insert": 0.7,
+    "substitute": 0.5238095238095238,
+    "transpose": 0.8076923076923077
+  }
+}

@@ -36,9 +36,42 @@ work during inference tuning without changing ranking results.
 ## Trigram ranker
 
 - Edit-distance baseline Accuracy@1: 56.30%.
-- Context ranker Accuracy@1: 65.19%.
-- Absolute Accuracy@1 improvement: 8.89 percentage points.
+- Context ranker Accuracy@1: 65.93%.
+- Absolute Accuracy@1 improvement: 9.63 percentage points.
 - Context ranker Accuracy@3: 74.07%.
+
+The selected ranker uses context and edit scores with frequency weight zero.
+
+## Ablation study
+
+All variants use the same 135 validation error examples and candidate pool:
+
+- Edit-distance baseline: Accuracy@1 56.30%, Accuracy@3 70.37%.
+- Edit + frequency without context: Accuracy@1 54.81%, Accuracy@3 71.85%.
+- Interpolated context + edit without frequency: Accuracy@1 65.93%, Accuracy@3 74.07%.
+- Full interpolated ranker with frequency: Accuracy@1 65.19%, Accuracy@3 74.07%.
+- Unigram context: Accuracy@1 48.89%, Accuracy@3 70.37%.
+- Bigram context: Accuracy@1 65.93%, Accuracy@3 75.56%.
+- Trigram context: Accuracy@1 62.22%, Accuracy@3 74.07%.
+
+Frequency did not improve Top-1 ranking on this validation split. Removing it
+also improved end-to-end Correction F1 from 46.34% to 47.58% and reduced the
+false-correction rate from 0.87% to 0.60%. Bigram-only context ranked known
+error positions well but reduced end-to-end Correction F1 to 41.95%, so the
+interpolated language model remains selected.
+
+Full selected-ranker Accuracy@1 by synthetic error type:
+
+- Delete: 54.29%.
+- Diacritic: 76.92%.
+- Insert: 70.00%.
+- Substitute: 52.38%.
+- Transpose: 80.77%.
+
+Generated figures:
+
+- `reports/figures/viwiki-20261101-smoke-dedup-ranker-ablation.png`.
+- `reports/figures/viwiki-20261101-smoke-dedup-error-types.png`.
 
 ## BiLSTM detector
 
@@ -56,7 +89,8 @@ these detections from becoming applied false corrections.
 ## Inference tuning
 
 `scripts/tune_inference.py` evaluated detector thresholds
-`[0.5, 0.6, 0.7, 0.8, 0.9]` and rank margins `[0.25, 0.5, 0.75]` on validation.
+`[0.5, 0.6, 0.7, 0.8, 0.9]` and rank margins
+`[0.25, 0.5, 0.75, 1.0]` on validation.
 The primary selection metric was correction F1, subject to a maximum 2% false
 correction rate. Ties prefer lower false-correction rate, higher sentence
 accuracy, a higher detector threshold, and a higher rank margin.
@@ -65,8 +99,10 @@ Selected configuration:
 
 - Detector threshold: 0.60.
 - Minimum rank margin: 0.75.
-- Title-case diacritic rank margin: 0.50.
+- Diacritic-only rank margin: 0.50.
+- Title-case diacritic rank margin: 0.30.
 - Keep-original bonus: 0.75.
+- Frequency weight: 0.00.
 
 The title-case margin applies only when the leading candidate preserves the
 case pattern and differs only in Vietnamese diacritics. This retains safe
@@ -77,16 +113,16 @@ corrections such as `Hộm` to `Hôm` without lowering the global margin.
 - Detection ERROR precision: 17.03%.
 - Detection ERROR recall: 87.41%.
 - Detection ERROR-F1: 28.50%.
-- Correction precision: 51.35%.
-- Correction recall / Accuracy@1: 42.22%.
-- Correction F1: 46.34%.
-- Accuracy@3: 62.22%.
-- Sentence accuracy: 53.85%.
-- False-correction rate: 0.87%.
+- Correction precision: 58.70%.
+- Correction recall / Accuracy@1: 40.00%.
+- Correction F1: 47.58%.
+- Accuracy@3: 64.44%.
+- Sentence accuracy: 55.98%.
+- False-correction rate: 0.60%.
 
-Compared with the untuned retrained configuration (`threshold=0.5`,
-`margin=0.5`), correction F1 increased from 42.38% to 46.34% while the
-false-correction rate decreased from 1.18% to 0.87%.
+Compared with the previous selected configuration with frequency scoring,
+correction F1 increased from 46.34% to 47.58% while the false-correction rate
+decreased from 0.87% to 0.60%.
 
 ## Local artifacts
 

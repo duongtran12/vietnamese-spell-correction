@@ -37,6 +37,8 @@ artifacts/*
 !artifacts/README.md
 reports/figures/*
 !reports/figures/.gitkeep
+!reports/figures/viwiki-20261101-smoke-dedup-ranker-ablation.png
+!reports/figures/viwiki-20261101-smoke-dedup-error-types.png
 *.pt
 *.pth
 *.ckpt

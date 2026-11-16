@@ -96,7 +96,8 @@ def test_pipeline_restores_title_case_after_ranking_lowercase_candidate() -> Non
         CandidateRanker(language_model),
         detector_threshold=0.5,
         minimum_rank_margin=0.75,
-        title_case_diacritic_rank_margin=0.5,
+        diacritic_rank_margin=0.5,
+        title_case_diacritic_rank_margin=0.3,
         keep_original_bonus=0.75,
     )
 
@@ -104,4 +105,25 @@ def test_pipeline_restores_title_case_after_ranking_lowercase_candidate() -> Non
 
     assert result.corrected_text == "Hôm nay"
     assert result.decisions[0].suggestions[0].token == "Hôm"
+
+
+def test_pipeline_uses_lower_margin_for_diacritic_only_candidate() -> None:
+    vocabulary = {"<PAD>": 0, "<UNK>": 1, "hộc": 2, "nay": 3}
+    language_model = TrigramLanguageModel().fit(
+        [["học", "nay"], ["học", "nay"], ["học", "tốt"]]
+    )
+    pipeline = SpellingCorrectionPipeline(
+        TokenIdDetector(error_token_id=2),  # type: ignore[arg-type]
+        vocabulary,
+        CandidateGenerator({"học": 10}),
+        CandidateRanker(language_model),
+        detector_threshold=0.5,
+        minimum_rank_margin=100.0,
+        diacritic_rank_margin=0.0,
+        keep_original_bonus=0.0,
+    )
+
+    result = pipeline.correct_text("hộc nay")
+
+    assert result.corrected_text == "học nay"
 

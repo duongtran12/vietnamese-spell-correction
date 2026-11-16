@@ -8,13 +8,27 @@
     "3": 0.7037037037037037
   },
   "context_accuracy_at_k": {
-    "1": 0.6518518518518519,
+    "1": 0.6592592592592592,
     "3": 0.7407407407407407
   },
-  "accuracy_at_1_delta": 0.0888888888888889,
+  "baseline_accuracy_at_1_by_error_type": {
+    "delete": 0.22857142857142856,
+    "diacritic": 0.5384615384615384,
+    "insert": 0.775,
+    "substitute": 0.42857142857142855,
+    "transpose": 0.8076923076923077
+  },
+  "context_accuracy_at_1_by_error_type": {
+    "delete": 0.5428571428571428,
+    "diacritic": 0.7692307692307693,
+    "insert": 0.7,
+    "substitute": 0.5238095238095238,
+    "transpose": 0.8076923076923077
+  },
+  "accuracy_at_1_delta": 0.09629629629629621,
   "weights": {
     "context": 1.0,
     "edit": 1.0,
-    "frequency": 0.1
+    "frequency": 0.0
   }
 }

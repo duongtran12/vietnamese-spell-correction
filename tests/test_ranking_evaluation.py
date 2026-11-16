@@ -22,4 +22,5 @@ def test_context_ranking_improves_ambiguous_top_one_baseline() -> None:
     assert metrics["baseline_accuracy_at_k"]["1"] == 0.0
     assert metrics["context_accuracy_at_k"]["1"] == 1.0
     assert metrics["accuracy_at_1_delta"] == 1.0
+    assert metrics["context_accuracy_at_1_by_error_type"] == {"delete": 1.0}
 

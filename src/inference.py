@@ -64,6 +64,7 @@ class SpellingCorrectionPipeline:
         *,
         detector_threshold: float = 0.5,
         minimum_rank_margin: float = 0.0,
+        diacritic_rank_margin: float = 0.5,
         title_case_diacritic_rank_margin: float = 0.5,
         keep_original_bonus: float = 0.75,
         candidate_pool_size: int = 5,
@@ -74,6 +75,8 @@ class SpellingCorrectionPipeline:
             raise ValueError("detector_threshold must be between 0 and 1")
         if minimum_rank_margin < 0:
             raise ValueError("minimum_rank_margin must be non-negative")
+        if diacritic_rank_margin < 0:
+            raise ValueError("diacritic rank margin must be non-negative")
         if title_case_diacritic_rank_margin < 0:
             raise ValueError("title-case diacritic rank margin must be non-negative")
         if keep_original_bonus < 0:
@@ -91,6 +94,7 @@ class SpellingCorrectionPipeline:
         self.ranker = ranker
         self.detector_threshold = detector_threshold
         self.minimum_rank_margin = minimum_rank_margin
+        self.diacritic_rank_margin = diacritic_rank_margin
         self.title_case_diacritic_rank_margin = title_case_diacritic_rank_margin
         self.keep_original_bonus = keep_original_bonus
         self.candidate_pool_size = candidate_pool_size
@@ -141,12 +145,17 @@ class SpellingCorrectionPipeline:
                 if len(suggestions) > 1:
                     rank_margin = suggestions[0].total_score - suggestions[1].total_score
                 required_margin = self.minimum_rank_margin
-                if (
-                    original_token.istitle()
-                    and suggestions[0].token != original_token
+                is_diacritic_only = (
+                    suggestions[0].token != original_token
                     and _diacritic_skeleton(suggestions[0].token)
                     == _diacritic_skeleton(original_token)
-                ):
+                )
+                if is_diacritic_only:
+                    required_margin = min(
+                        required_margin,
+                        self.diacritic_rank_margin,
+                    )
+                if original_token.istitle() and is_diacritic_only:
                     required_margin = min(
                         required_margin,
                         self.title_case_diacritic_rank_margin,
@@ -279,6 +288,7 @@ class SpellingCorrectionPipeline:
         trigram_artifact: str | Path,
         detector_threshold: float = 0.5,
         minimum_rank_margin: float = 0.0,
+        diacritic_rank_margin: float = 0.5,
         title_case_diacritic_rank_margin: float = 0.5,
         keep_original_bonus: float = 0.75,
         candidate_pool_size: int = 5,
@@ -339,6 +349,7 @@ class SpellingCorrectionPipeline:
             ranker,
             detector_threshold=detector_threshold,
             minimum_rank_margin=minimum_rank_margin,
+            diacritic_rank_margin=diacritic_rank_margin,
             title_case_diacritic_rank_margin=title_case_diacritic_rank_margin,
             keep_original_bonus=keep_original_bonus,
             candidate_pool_size=candidate_pool_size,

@@ -55,6 +55,9 @@ def main() -> None:
         trigram_artifact=args.trigram,
         detector_threshold=float(inference_config.get("detector_threshold", 0.5)),
         minimum_rank_margin=float(inference_config.get("minimum_rank_margin", 0.0)),
+        diacritic_rank_margin=float(
+            inference_config.get("diacritic_rank_margin", 0.5)
+        ),
         title_case_diacritic_rank_margin=float(
             inference_config.get("title_case_diacritic_rank_margin", 0.5)
         ),

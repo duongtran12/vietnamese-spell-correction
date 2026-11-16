@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections import defaultdict
 from dataclasses import dataclass
 from typing import Any, Iterable, Sequence
 
@@ -26,6 +27,23 @@ def _accuracy_at_k(
         target in ranking[:k]
         for ranking, target in zip(rankings, targets, strict=True)
     ) / len(targets)
+
+
+def _accuracy_at_k_by_group(
+    rankings: Sequence[Sequence[str]],
+    targets: Sequence[str],
+    groups: Sequence[str],
+    k: int,
+) -> dict[str, float]:
+    grouped_hits: dict[str, int] = defaultdict(int)
+    grouped_totals: dict[str, int] = defaultdict(int)
+    for ranking, target, group in zip(rankings, targets, groups, strict=True):
+        grouped_totals[group] += 1
+        grouped_hits[group] += target in ranking[:k]
+    return {
+        group: grouped_hits[group] / grouped_totals[group]
+        for group in sorted(grouped_totals)
+    }
 
 
 def evaluate_ranker(
@@ -60,6 +78,7 @@ def evaluate_ranker(
         context_rankings.append([candidate.token for candidate in ranked])
 
     targets = [example.clean_token for example in examples]
+    error_types = [example.error_type for example in examples]
     in_vocabulary_indices = [
         index for index, target in enumerate(targets) if target in generator.frequencies
     ]
@@ -82,6 +101,12 @@ def evaluate_ranker(
             str(k): _accuracy_at_k(context_rankings, targets, k)
             for k in sorted(set(accuracy_k_values))
         },
+        "baseline_accuracy_at_1_by_error_type": _accuracy_at_k_by_group(
+            baseline_rankings, targets, error_types, 1
+        ),
+        "context_accuracy_at_1_by_error_type": _accuracy_at_k_by_group(
+            context_rankings, targets, error_types, 1
+        ),
     }
     metrics["accuracy_at_1_delta"] = (
         metrics["context_accuracy_at_k"].get("1", 0.0)

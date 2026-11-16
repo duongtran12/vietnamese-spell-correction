@@ -10,14 +10,14 @@
     "f1": 0.28502415458937197
   },
   "correction": {
-    "correct_changes": 57,
-    "all_changes": 111,
-    "precision": 0.5135135135135135,
-    "recall": 0.4222222222222222,
-    "f1": 0.4634146341463415,
-    "accuracy_at_1": 0.4222222222222222,
-    "accuracy_at_3": 0.6222222222222222
+    "correct_changes": 54,
+    "all_changes": 92,
+    "precision": 0.5869565217391305,
+    "recall": 0.4,
+    "f1": 0.4757709251101322,
+    "accuracy_at_1": 0.4,
+    "accuracy_at_3": 0.6444444444444445
   },
-  "sentence_accuracy": 0.5384615384615384,
-  "false_correction_rate": 0.008665222462922846
+  "sentence_accuracy": 0.5598290598290598,
+  "false_correction_rate": 0.005999000166638894
 }

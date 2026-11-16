@@ -53,6 +53,9 @@ def load_pipeline(
         trigram_artifact=trigram_path,
         detector_threshold=float(inference_config.get("detector_threshold", 0.5)),
         minimum_rank_margin=float(inference_config.get("minimum_rank_margin", 0.0)),
+        diacritic_rank_margin=float(
+            inference_config.get("diacritic_rank_margin", 0.5)
+        ),
         title_case_diacritic_rank_margin=float(
             inference_config.get("title_case_diacritic_rank_margin", 0.5)
         ),
@@ -100,9 +103,9 @@ def main() -> None:
         vocabulary_path = st.text_input("Vocabulary", str(DEFAULT_VOCABULARY))
         trigram_path = st.text_input("Trigram model", str(DEFAULT_TRIGRAM))
         st.divider()
-        st.metric("Validation Correction F1", "46,34%")
-        st.metric("Sentence Accuracy", "53,85%")
-        st.metric("False Correction Rate", "0,87%")
+        st.metric("Validation Correction F1", "47,58%")
+        st.metric("Sentence Accuracy", "55,98%")
+        st.metric("False Correction Rate", "0,60%")
         st.caption("Kết quả smoke validation; chưa phải kết quả test cuối.")
 
     example = st.selectbox(

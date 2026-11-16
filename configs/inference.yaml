@@ -1,6 +1,7 @@
 detector_threshold: 0.6
 minimum_rank_margin: 0.75
-title_case_diacritic_rank_margin: 0.5
+diacritic_rank_margin: 0.5
+title_case_diacritic_rank_margin: 0.3
 keep_original_bonus: 0.75
 candidate_pool_size: 5
 top_k_suggestions: 3

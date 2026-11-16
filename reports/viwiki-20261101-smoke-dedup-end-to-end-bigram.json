@@ -1,0 +1,23 @@
+{
+  "sentences": 234,
+  "error_tokens": 135,
+  "detection": {
+    "true_positive": 118,
+    "false_positive": 575,
+    "false_negative": 17,
+    "precision": 0.17027417027417027,
+    "recall": 0.8740740740740741,
+    "f1": 0.28502415458937197
+  },
+  "correction": {
+    "correct_changes": 56,
+    "all_changes": 132,
+    "precision": 0.42424242424242425,
+    "recall": 0.4148148148148148,
+    "f1": 0.4194756554307116,
+    "accuracy_at_1": 0.4148148148148148,
+    "accuracy_at_3": 0.6370370370370371
+  },
+  "sentence_accuracy": 0.5085470085470085,
+  "false_correction_rate": 0.012164639226795533
+}

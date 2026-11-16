@@ -107,6 +107,9 @@ def main() -> None:
         trigram_artifact=args.trigram,
         detector_threshold=args.thresholds[0],
         minimum_rank_margin=args.rank_margins[0],
+        diacritic_rank_margin=float(
+            inference_config.get("diacritic_rank_margin", 0.5)
+        ),
         title_case_diacritic_rank_margin=float(
             inference_config.get("title_case_diacritic_rank_margin", 0.5)
         ),

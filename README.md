@@ -694,7 +694,7 @@ Chi tiết và giới hạn của thí nghiệm nằm trong `reports/VIWIKI_SMOK
 - Không còn ép token OOV phải đổi thành từ gần nhất.
 - Xếp hạng thêm ứng viên casefold và khôi phục kiểu viết hoa khi hiển thị.
 - Dùng rank margin đã tune `0.75` để giảm sửa nhầm token đúng.
-- Dùng margin riêng `0.5` cho ứng viên viết hoa chỉ khác dấu ở đầu câu.
+- Dùng margin riêng `0.5` cho ứng viên chỉ khác dấu và `0.3` khi từ viết hoa đầu câu.
 - Thêm prior giữ nguyên và ưu tiên ứng viên chỉ khác dấu khi phù hợp.
 
 ### Mốc 12 — Retrain sau near-dedup và tune inference
@@ -705,7 +705,7 @@ Chi tiết và giới hạn của thí nghiệm nằm trong `reports/VIWIKI_SMOK
 - Thêm cache cho candidate generator để tái sử dụng kết quả sinh ứng viên.
 - Thêm `scripts/tune_inference.py` để quét detector threshold và rank margin trên validation.
 - Chọn `detector_threshold=0.6` và `minimum_rank_margin=0.75` với giới hạn false-correction rate tối đa 2%.
-- Validation Correction F1 đạt 46,34%, Sentence Accuracy đạt 53,85% và false-correction rate còn 0,87%.
+- Validation Correction F1 đạt 47,58%, Sentence Accuracy đạt 55,98% và false-correction rate còn 0,60%.
 - Giữ nguyên test split, chưa dùng để tune hoặc báo cáo kết quả cuối.
 
 Chi tiết nằm trong `reports/VIWIKI_SMOKE_DEDUP_20261101.md`.
@@ -737,4 +737,26 @@ artifacts/viwiki-20261101-smoke-dedup-trigram.json
 ```
 
 Nếu artifact nằm ở vị trí khác, có thể thay đường dẫn trong thanh bên của giao diện.
+
+### Mốc 14 — Baseline và ablation study
+
+Đã chạy các ablation trên validation dedup, không sử dụng test:
+
+- Edit-distance baseline đạt Accuracy@1 56,30%.
+- Context + edit đạt 65,93%, tăng 9,63 điểm phần trăm so với baseline.
+- Frequency score làm giảm nhẹ kết quả nên cấu hình chính đã đặt `frequency_weight=0.0`.
+- Bigram thuần tốt nhất ở ranking có vị trí lỗi biết trước, nhưng giảm chất lượng end-to-end.
+- Mô hình nội suy không frequency đạt end-to-end Correction F1 47,58%.
+- Đã tạo biểu đồ so sánh ablation và Accuracy@1 theo từng loại lỗi.
+
+Chạy lại thí nghiệm:
+
+```bash
+python -m scripts.run_ablation \
+  --train data/processed/viwiki-20261101-smoke-dedup/train.jsonl \
+  --evaluation data/processed/viwiki-20261101-smoke-dedup/validation.jsonl \
+  --output reports/viwiki-20261101-smoke-dedup-ablation.json \
+  --figure reports/figures/viwiki-20261101-smoke-dedup-ranker-ablation.png \
+  --error-figure reports/figures/viwiki-20261101-smoke-dedup-error-types.png
+```
 
