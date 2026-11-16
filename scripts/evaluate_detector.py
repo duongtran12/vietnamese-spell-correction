@@ -13,6 +13,7 @@ from src.data.dataset import DetectorDataset, LABEL_PAD_ID, make_detector_collat
 from src.data.io import read_jsonl, write_json
 from src.models.bilstm_detector import BiLSTMDetector, BiLSTMDetectorConfig
 from src.training.detector import evaluate_detector
+from src.utils.paths import portable_project_path
 
 
 def _parse_args() -> argparse.Namespace:
@@ -59,8 +60,8 @@ def main() -> None:
         error_threshold=threshold,
     )
     report = {
-        "checkpoint": str(args.checkpoint),
-        "data": str(args.data),
+        "checkpoint": portable_project_path(args.checkpoint),
+        "data": portable_project_path(args.data),
         "threshold": threshold,
         "metrics": metrics,
     }

@@ -773,3 +773,26 @@ python -m scripts.run_ablation \
 
 Chi tiết nằm trong `reports/VIWIKI_SMOKE_DEDUP_ERROR_ANALYSIS.md`.
 
+### Mốc 16 — Báo cáo tổng kết và tái lập validation
+
+Đã bổ sung:
+
+- `reports/FINAL_REPORT_DRAFT.md`: bản nháp báo cáo tiếng Việt đầy đủ.
+- `reports/DECISION_LOG.md`: nhật ký các quyết định dữ liệu, mô hình và tuning.
+- `scripts/reproduce_validation.py`: chạy lại detector, candidates, ranker,
+  end-to-end, ablation và error analysis bằng một lệnh.
+- Kiểm thử tự động bảo đảm script tái lập không tham chiếu `test.jsonl`.
+
+Chạy lại toàn bộ báo cáo validation đã khóa:
+
+```bash
+python -m scripts.reproduce_validation \
+  --data-dir data/processed/viwiki-20261101-smoke-dedup \
+  --artifact-dir artifacts \
+  --experiment-name viwiki-20261101-smoke-dedup \
+  --device cpu
+```
+
+Thêm `--include-tuning` nếu cần tái tạo cả grid search validation. Dùng
+`--dry-run` để xem toàn bộ lệnh mà không chạy. Script này không đọc tập test.
+

@@ -11,6 +11,7 @@ import yaml
 from src.correction.candidates import CandidateGenerator, build_training_dictionary
 from src.correction.evaluation import CandidateExample, evaluate_candidate_generator
 from src.data.io import read_jsonl, write_json
+from src.utils.paths import portable_project_path
 
 
 def _parse_args() -> argparse.Namespace:
@@ -74,8 +75,8 @@ def main() -> None:
         k_values=tuple(k for k in (1, 3, 5) if k <= top_k),
     )
     metrics["dictionary_size"] = len(frequencies)
-    metrics["train_path"] = str(args.train)
-    metrics["evaluation_path"] = str(args.evaluation)
+    metrics["train_path"] = portable_project_path(args.train)
+    metrics["evaluation_path"] = portable_project_path(args.evaluation)
     write_json(args.output, metrics)
 
     print(f"Evaluated {metrics['examples']} spelling errors")
