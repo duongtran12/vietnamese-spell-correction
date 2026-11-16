@@ -710,3 +710,31 @@ Chi tiết và giới hạn của thí nghiệm nằm trong `reports/VIWIKI_SMOK
 
 Chi tiết nằm trong `reports/VIWIKI_SMOKE_DEDUP_20261101.md`.
 
+### Mốc 13 — Streamlit demo
+
+Đã triển khai giao diện chạy hoàn toàn cục bộ:
+
+- Nhập câu bất kỳ hoặc chọn câu ví dụ.
+- Tô đỏ token được sửa và tô vàng token bị nghi sai nhưng được giữ nguyên.
+- Hiển thị detector confidence, Top-3, từ áp dụng và trạng thái quyết định.
+- Hiển thị điểm tổng, điểm ngữ cảnh, edit score, tần suất và khoảng cách.
+- Cho phép người dùng chọn ứng viên khác hoặc giữ nguyên token.
+- Hiển thị metric validation và giới hạn của mô hình.
+- Kiểm tra artifact trước khi nạp và không yêu cầu Internet khi chạy.
+
+Chạy từ thư mục gốc của dự án:
+
+```bash
+streamlit run app/streamlit_app.py
+```
+
+Mặc định demo sử dụng các artifact cục bộ sau:
+
+```text
+artifacts/viwiki-20261101-smoke-dedup-detector.pt
+data/processed/viwiki-20261101-smoke-dedup/vocabulary.json
+artifacts/viwiki-20261101-smoke-dedup-trigram.json
+```
+
+Nếu artifact nằm ở vị trí khác, có thể thay đường dẫn trong thanh bên của giao diện.
+
