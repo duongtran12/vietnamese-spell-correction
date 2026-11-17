@@ -96,6 +96,11 @@ decreases from 0.58% to 0.40%.
 - `viwiki-20261101-expanded-2000-candidates.json`.
 - `viwiki-20261101-expanded-2000-ranker.json`.
 - `viwiki-20261101-expanded-2000-inference-tuning.json`.
+- `viwiki-20261101-expanded-2000-end-to-end-validation.json`.
+
+The standalone end-to-end reproduction using the committed inference config
+matched the selected tuning result exactly for Correction F1, Accuracy@3,
+Sentence Accuracy and false-correction rate.
 
 Raw data, processed splits, n-gram artifact and detector checkpoint remain local
 and are excluded from Git.
