@@ -300,6 +300,20 @@ Tách metric theo: xóa, thêm, thay, hoán đổi, lỗi dấu, từ ngắn/dà
 
 Mọi dependency phải được khóa trong `requirements.txt` hoặc `pyproject.toml`. Demo phải chạy được bằng checkpoint cục bộ đã train bởi nhóm.
 
+### 10.1. Thiết lập môi trường cục bộ
+
+Trên Windows PowerShell:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+`requirements.txt` tự chọn nhánh Streamlit tương thích với Python 3.10 hoặc
+Python 3.11 trở lên. Các lệnh huấn luyện và demo nên dùng Python trong `.venv`
+để không phụ thuộc vào thư viện cài toàn hệ thống.
+
 ## 11. Cấu trúc repository đề xuất
 
 ```text
