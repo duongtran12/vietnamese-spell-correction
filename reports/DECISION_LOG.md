@@ -77,3 +77,23 @@
   protocol may still change.
 - Next gate: confirm final corpus and design, record the commit, then execute the
   final test exactly once without further tuning.
+
+## 2026-11-17 — Expand the corpus to 2,000 Wikipedia articles
+
+- Decision: use 2,000 main-namespace articles from the official 2026-11-01
+  Vietnamese Wikipedia shard
+  `pages-articles3.xml-p3452086p4565246.bz2`.
+- Reason: the 127-document smoke corpus left validation OOV at 10.61% and was
+  too small for reliable correction of unseen sentences.
+- Result: 53,953 sentences remain after exact and near-duplicate removal;
+  train-only vocabulary grows to 40,127 entries and validation OOV falls to
+  3.22%.
+- Test policy: the expanded test split was generated but remains unread.
+
+## 2026-11-17 — Retune safe inference on expanded validation
+
+- Decision: set detector threshold to 0.50 and global rank margin to 1.00.
+- Evidence: this combination achieved Correction F1 61.21% with a 0.40%
+  false-correction rate on expanded validation.
+- Selection protocol: maximize Correction F1 subject to false-correction rate
+  at or below 2%, using only validation.

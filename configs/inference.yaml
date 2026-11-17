@@ -1,5 +1,5 @@
-detector_threshold: 0.6
-minimum_rank_margin: 0.75
+detector_threshold: 0.5
+minimum_rank_margin: 1.0
 diacritic_rank_margin: 0.5
 title_case_diacritic_rank_margin: 0.3
 keep_original_bonus: 0.75

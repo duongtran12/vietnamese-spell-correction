@@ -1,0 +1,581 @@
+{
+  "selection": {
+    "primary_metric": "correction.f1",
+    "max_false_correction_rate": 0.02,
+    "tie_breakers": [
+      "lower false_correction_rate",
+      "higher sentence_accuracy",
+      "higher detector_threshold",
+      "higher minimum_rank_margin"
+    ]
+  },
+  "best": {
+    "detector_threshold": 0.5,
+    "minimum_rank_margin": 1.0,
+    "metrics": {
+      "sentences": 4779,
+      "error_tokens": 2898,
+      "detection": {
+        "true_positive": 2399,
+        "false_positive": 3567,
+        "false_negative": 499,
+        "precision": 0.40211196781763325,
+        "recall": 0.8278122843340234,
+        "f1": 0.5412906137184115
+      },
+      "correction": {
+        "correct_changes": 1578,
+        "all_changes": 2258,
+        "precision": 0.6988485385296723,
+        "recall": 0.5445134575569358,
+        "f1": 0.6121024049650893,
+        "accuracy_at_1": 0.5445134575569358,
+        "accuracy_at_3": 0.6649413388543823
+      },
+      "sentence_accuracy": 0.6524377484829462,
+      "false_correction_rate": 0.00401174810487973
+    }
+  },
+  "results": [
+    {
+      "detector_threshold": 0.5,
+      "minimum_rank_margin": 0.25,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2399,
+          "false_positive": 3567,
+          "false_negative": 499,
+          "precision": 0.40211196781763325,
+          "recall": 0.8278122843340234,
+          "f1": 0.5412906137184115
+        },
+        "correction": {
+          "correct_changes": 1675,
+          "all_changes": 2836,
+          "precision": 0.590620592383639,
+          "recall": 0.5779848171152518,
+          "f1": 0.5842343913498431,
+          "accuracy_at_1": 0.5779848171152518,
+          "accuracy_at_3": 0.6649413388543823
+        },
+        "sentence_accuracy": 0.6264908976773383,
+        "false_correction_rate": 0.006874938470121091
+      }
+    },
+    {
+      "detector_threshold": 0.5,
+      "minimum_rank_margin": 0.5,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2399,
+          "false_positive": 3567,
+          "false_negative": 499,
+          "precision": 0.40211196781763325,
+          "recall": 0.8278122843340234,
+          "f1": 0.5412906137184115
+        },
+        "correction": {
+          "correct_changes": 1641,
+          "all_changes": 2591,
+          "precision": 0.6333461983790043,
+          "recall": 0.5662525879917184,
+          "f1": 0.5979231189652031,
+          "accuracy_at_1": 0.5662525879917184,
+          "accuracy_at_3": 0.6649413388543823
+        },
+        "sentence_accuracy": 0.6398828206737811,
+        "false_correction_rate": 0.005586913004955206
+      }
+    },
+    {
+      "detector_threshold": 0.5,
+      "minimum_rank_margin": 0.75,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2399,
+          "false_positive": 3567,
+          "false_negative": 499,
+          "precision": 0.40211196781763325,
+          "recall": 0.8278122843340234,
+          "f1": 0.5412906137184115
+        },
+        "correction": {
+          "correct_changes": 1606,
+          "all_changes": 2391,
+          "precision": 0.671685487243831,
+          "recall": 0.5541752933057281,
+          "f1": 0.6072981660049158,
+          "accuracy_at_1": 0.5541752933057281,
+          "accuracy_at_3": 0.6649413388543823
+        },
+        "sentence_accuracy": 0.6474157773592801,
+        "false_correction_rate": 0.004627046893971713
+      }
+    },
+    {
+      "detector_threshold": 0.5,
+      "minimum_rank_margin": 1.0,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2399,
+          "false_positive": 3567,
+          "false_negative": 499,
+          "precision": 0.40211196781763325,
+          "recall": 0.8278122843340234,
+          "f1": 0.5412906137184115
+        },
+        "correction": {
+          "correct_changes": 1578,
+          "all_changes": 2258,
+          "precision": 0.6988485385296723,
+          "recall": 0.5445134575569358,
+          "f1": 0.6121024049650893,
+          "accuracy_at_1": 0.5445134575569358,
+          "accuracy_at_3": 0.6649413388543823
+        },
+        "sentence_accuracy": 0.6524377484829462,
+        "false_correction_rate": 0.00401174810487973
+      }
+    },
+    {
+      "detector_threshold": 0.6,
+      "minimum_rank_margin": 0.25,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2367,
+          "false_positive": 3312,
+          "false_negative": 531,
+          "precision": 0.41679873217115687,
+          "recall": 0.8167701863354038,
+          "f1": 0.5519412381951732
+        },
+        "correction": {
+          "correct_changes": 1651,
+          "all_changes": 2739,
+          "precision": 0.6027747353048558,
+          "recall": 0.5697032436162871,
+          "f1": 0.5857725740642186,
+          "accuracy_at_1": 0.5697032436162871,
+          "accuracy_at_3": 0.6563146997929606
+        },
+        "sentence_accuracy": 0.6325591127851015,
+        "false_correction_rate": 0.006317067568011026
+      }
+    },
+    {
+      "detector_threshold": 0.6,
+      "minimum_rank_margin": 0.5,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2367,
+          "false_positive": 3312,
+          "false_negative": 531,
+          "precision": 0.41679873217115687,
+          "recall": 0.8167701863354038,
+          "f1": 0.5519412381951732
+        },
+        "correction": {
+          "correct_changes": 1618,
+          "all_changes": 2510,
+          "precision": 0.6446215139442231,
+          "recall": 0.5583160800552105,
+          "f1": 0.5983727810650887,
+          "accuracy_at_1": 0.5583160800552105,
+          "accuracy_at_3": 0.6563146997929606
+        },
+        "sentence_accuracy": 0.6446955430006277,
+        "false_correction_rate": 0.005143897876808978
+      }
+    },
+    {
+      "detector_threshold": 0.6,
+      "minimum_rank_margin": 0.75,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2367,
+          "false_positive": 3312,
+          "false_negative": 531,
+          "precision": 0.41679873217115687,
+          "recall": 0.8167701863354038,
+          "f1": 0.5519412381951732
+        },
+        "correction": {
+          "correct_changes": 1583,
+          "all_changes": 2325,
+          "precision": 0.6808602150537635,
+          "recall": 0.5462387853692201,
+          "f1": 0.6061650392494735,
+          "accuracy_at_1": 0.5462387853692201,
+          "accuracy_at_3": 0.6563146997929606
+        },
+        "sentence_accuracy": 0.6507637581083908,
+        "false_correction_rate": 0.004307091523643882
+      }
+    },
+    {
+      "detector_threshold": 0.6,
+      "minimum_rank_margin": 1.0,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2367,
+          "false_positive": 3312,
+          "false_negative": 531,
+          "precision": 0.41679873217115687,
+          "recall": 0.8167701863354038,
+          "f1": 0.5519412381951732
+        },
+        "correction": {
+          "correct_changes": 1556,
+          "all_changes": 2198,
+          "precision": 0.707916287534122,
+          "recall": 0.5369220151828847,
+          "f1": 0.6106750392464678,
+          "accuracy_at_1": 0.5369220151828847,
+          "accuracy_at_3": 0.6563146997929606
+        },
+        "sentence_accuracy": 0.6547394852479598,
+        "false_correction_rate": 0.0037328126538246974
+      }
+    },
+    {
+      "detector_threshold": 0.7,
+      "minimum_rank_margin": 0.25,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2349,
+          "false_positive": 3091,
+          "false_negative": 549,
+          "precision": 0.4318014705882353,
+          "recall": 0.8105590062111802,
+          "f1": 0.5634444710961862
+        },
+        "correction": {
+          "correct_changes": 1638,
+          "all_changes": 2662,
+          "precision": 0.6153268219383922,
+          "recall": 0.5652173913043478,
+          "f1": 0.5892086330935252,
+          "accuracy_at_1": 0.5652173913043478,
+          "accuracy_at_3": 0.6514837819185645
+        },
+        "sentence_accuracy": 0.6384180790960452,
+        "false_correction_rate": 0.0058166245528828795
+      }
+    },
+    {
+      "detector_threshold": 0.7,
+      "minimum_rank_margin": 0.5,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2349,
+          "false_positive": 3091,
+          "false_negative": 549,
+          "precision": 0.4318014705882353,
+          "recall": 0.8105590062111802,
+          "f1": 0.5634444710961862
+        },
+        "correction": {
+          "correct_changes": 1605,
+          "all_changes": 2441,
+          "precision": 0.6575174108971733,
+          "recall": 0.5538302277432712,
+          "f1": 0.6012361865517887,
+          "accuracy_at_1": 0.5538302277432712,
+          "accuracy_at_3": 0.6514837819185645
+        },
+        "sentence_accuracy": 0.6501360117179327,
+        "false_correction_rate": 0.004700882748662751
+      }
+    },
+    {
+      "detector_threshold": 0.7,
+      "minimum_rank_margin": 0.75,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2349,
+          "false_positive": 3091,
+          "false_negative": 549,
+          "precision": 0.4318014705882353,
+          "recall": 0.8105590062111802,
+          "f1": 0.5634444710961862
+        },
+        "correction": {
+          "correct_changes": 1570,
+          "all_changes": 2265,
+          "precision": 0.6931567328918322,
+          "recall": 0.5417529330572809,
+          "f1": 0.6081735425140421,
+          "accuracy_at_1": 0.5417529330572809,
+          "accuracy_at_3": 0.6514837819185645
+        },
+        "sentence_accuracy": 0.6551579828415987,
+        "false_correction_rate": 0.003937912250188692
+      }
+    },
+    {
+      "detector_threshold": 0.7,
+      "minimum_rank_margin": 1.0,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2349,
+          "false_positive": 3091,
+          "false_negative": 549,
+          "precision": 0.4318014705882353,
+          "recall": 0.8105590062111802,
+          "f1": 0.5634444710961862
+        },
+        "correction": {
+          "correct_changes": 1543,
+          "all_changes": 2146,
+          "precision": 0.7190121155638397,
+          "recall": 0.5324361628709455,
+          "f1": 0.6118160190325138,
+          "accuracy_at_1": 0.5324361628709455,
+          "accuracy_at_3": 0.6514837819185645
+        },
+        "sentence_accuracy": 0.65829671479389,
+        "false_correction_rate": 0.0034292652512059856
+      }
+    },
+    {
+      "detector_threshold": 0.8,
+      "minimum_rank_margin": 0.25,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2332,
+          "false_positive": 2934,
+          "false_negative": 566,
+          "precision": 0.4428408659323965,
+          "recall": 0.8046928916494134,
+          "f1": 0.5712885840274375
+        },
+        "correction": {
+          "correct_changes": 1628,
+          "all_changes": 2601,
+          "precision": 0.6259131103421761,
+          "recall": 0.5617667356797792,
+          "f1": 0.5921076559374432,
+          "accuracy_at_1": 0.5617667356797792,
+          "accuracy_at_3": 0.647688060731539
+        },
+        "sentence_accuracy": 0.6432308014228918,
+        "false_correction_rate": 0.00543924129557313
+      }
+    },
+    {
+      "detector_threshold": 0.8,
+      "minimum_rank_margin": 0.5,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2332,
+          "false_positive": 2934,
+          "false_negative": 566,
+          "precision": 0.4428408659323965,
+          "recall": 0.8046928916494134,
+          "f1": 0.5712885840274375
+        },
+        "correction": {
+          "correct_changes": 1595,
+          "all_changes": 2392,
+          "precision": 0.6668060200668896,
+          "recall": 0.5503795721187026,
+          "f1": 0.603024574669187,
+          "accuracy_at_1": 0.5503795721187026,
+          "accuracy_at_3": 0.647688060731539
+        },
+        "sentence_accuracy": 0.6530654948734045,
+        "false_correction_rate": 0.004413743313753158
+      }
+    },
+    {
+      "detector_threshold": 0.8,
+      "minimum_rank_margin": 0.75,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2332,
+          "false_positive": 2934,
+          "false_negative": 566,
+          "precision": 0.4428408659323965,
+          "recall": 0.8046928916494134,
+          "f1": 0.5712885840274375
+        },
+        "correction": {
+          "correct_changes": 1560,
+          "all_changes": 2225,
+          "precision": 0.701123595505618,
+          "recall": 0.5383022774327122,
+          "f1": 0.609018153425727,
+          "accuracy_at_1": 0.5383022774327122,
+          "accuracy_at_3": 0.647688060731539
+        },
+        "sentence_accuracy": 0.6570412220129734,
+        "false_correction_rate": 0.0037246086699701374
+      }
+    },
+    {
+      "detector_threshold": 0.8,
+      "minimum_rank_margin": 1.0,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2332,
+          "false_positive": 2934,
+          "false_negative": 566,
+          "precision": 0.4428408659323965,
+          "recall": 0.8046928916494134,
+          "f1": 0.5712885840274375
+        },
+        "correction": {
+          "correct_changes": 1533,
+          "all_changes": 2111,
+          "precision": 0.7261961155850308,
+          "recall": 0.5289855072463768,
+          "f1": 0.6120982231982431,
+          "accuracy_at_1": 0.5289855072463768,
+          "accuracy_at_3": 0.647688060731539
+        },
+        "sentence_accuracy": 0.6597614563716259,
+        "false_correction_rate": 0.003240573622551111
+      }
+    },
+    {
+      "detector_threshold": 0.9,
+      "minimum_rank_margin": 0.25,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2304,
+          "false_positive": 2757,
+          "false_negative": 594,
+          "precision": 0.45524599881446354,
+          "recall": 0.7950310559006211,
+          "f1": 0.5789672069355447
+        },
+        "correction": {
+          "correct_changes": 1612,
+          "all_changes": 2531,
+          "precision": 0.6369024101145793,
+          "recall": 0.5562456866804693,
+          "f1": 0.5938478541167802,
+          "accuracy_at_1": 0.5562456866804693,
+          "accuracy_at_3": 0.6418219461697723
+        },
+        "sentence_accuracy": 0.646788030968822,
+        "false_correction_rate": 0.005061858038263381
+      }
+    },
+    {
+      "detector_threshold": 0.9,
+      "minimum_rank_margin": 0.5,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2304,
+          "false_positive": 2757,
+          "false_negative": 594,
+          "precision": 0.45524599881446354,
+          "recall": 0.7950310559006211,
+          "f1": 0.5789672069355447
+        },
+        "correction": {
+          "correct_changes": 1579,
+          "all_changes": 2331,
+          "precision": 0.6773916773916774,
+          "recall": 0.5448585231193926,
+          "f1": 0.6039395677949894,
+          "accuracy_at_1": 0.5448585231193926,
+          "accuracy_at_3": 0.6418219461697723
+        },
+        "sentence_accuracy": 0.6547394852479598,
+        "false_correction_rate": 0.004110195911134447
+      }
+    },
+    {
+      "detector_threshold": 0.9,
+      "minimum_rank_margin": 0.75,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2304,
+          "false_positive": 2757,
+          "false_negative": 594,
+          "precision": 0.45524599881446354,
+          "recall": 0.7950310559006211,
+          "f1": 0.5789672069355447
+        },
+        "correction": {
+          "correct_changes": 1544,
+          "all_changes": 2174,
+          "precision": 0.7102115915363385,
+          "recall": 0.5327812284334024,
+          "f1": 0.6088328075709779,
+          "accuracy_at_1": 0.5327812284334024,
+          "accuracy_at_3": 0.6418219461697723
+        },
+        "sentence_accuracy": 0.6578782172002511,
+        "false_correction_rate": 0.0035031011058970236
+      }
+    },
+    {
+      "detector_threshold": 0.9,
+      "minimum_rank_margin": 1.0,
+      "metrics": {
+        "sentences": 4779,
+        "error_tokens": 2898,
+        "detection": {
+          "true_positive": 2304,
+          "false_positive": 2757,
+          "false_negative": 594,
+          "precision": 0.45524599881446354,
+          "recall": 0.7950310559006211,
+          "f1": 0.5789672069355447
+        },
+        "correction": {
+          "correct_changes": 1517,
+          "all_changes": 2064,
+          "precision": 0.7349806201550387,
+          "recall": 0.5234644582470669,
+          "f1": 0.611446997178557,
+          "accuracy_at_1": 0.5234644582470669,
+          "accuracy_at_3": 0.6418219461697723
+        },
+        "sentence_accuracy": 0.6603892027620841,
+        "false_correction_rate": 0.0030354740261871165
+      }
+    }
+  ]
+}

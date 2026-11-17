@@ -810,3 +810,23 @@ python -m scripts.reproduce_validation \
 Thêm `--include-tuning` nếu cần tái tạo cả grid search validation. Dùng
 `--dry-run` để xem toàn bộ lệnh mà không chạy. Script này không đọc tập test.
 
+### Mốc 17 — Mở rộng corpus và huấn luyện lại
+
+Corpus được mở rộng từ 127 lên 2.000 bài Wikipedia chính thức. Sau lọc trùng,
+dữ liệu gồm 53.953 câu; validation OOV giảm từ 10,61% xuống 3,22% và vocabulary
+train tăng từ 5.367 lên 40.127 token.
+
+Kết quả validation mới:
+
+- BiLSTM ERROR-F1: 54,13% (mốc smoke: 28,50%).
+- Candidate Recall@5: 83,06%.
+- Ranker Context Accuracy@1: 75,12%.
+- End-to-end Correction F1: 61,21% (mốc smoke: 47,79%).
+- Accuracy@3: 66,49%.
+- Sentence Accuracy: 65,24%.
+- False Correction Rate: 0,40%.
+
+Grid search validation chọn detector threshold `0.50` và minimum rank margin
+`1.00`. Tập test mở rộng đã được tạo nhưng chưa được đọc. Chi tiết nằm trong
+`reports/VIWIKI_EXPANDED_2000_20261101.md`.
+

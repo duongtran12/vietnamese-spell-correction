@@ -4,6 +4,22 @@
 
 A small official Vietnamese Wikipedia shard from the `20261101` dump has been downloaded and used for a smoke experiment. The full production corpus and final protocol still require instructor approval. Raw text and trained artifacts remain local and are excluded from Git.
 
+An expanded validation experiment now uses 2,000 main-namespace articles from
+`viwiki-20261101-pages-articles3.xml-p3452086p4565246.bz2` (36.34 MB). The
+converter wrote 56,428 clean sentences; exact and near-duplicate removal left
+53,953 sentences. The document-level split contains 43,312 train, 4,779
+validation and 5,862 sealed test sentences. Validation OOV is 3.22%. Full
+provenance and aggregate statistics are stored under `reports/`.
+
+Expanded shard:
+
+- File: `viwiki-20261101-pages-articles3.xml-p3452086p4565246.bz2`.
+- Size: 38,103,742 bytes.
+- SHA-256: `fe0cb61aa00ac4b2a28293dd97f721f2e776f4a282ee7893d986130955414f86`.
+- Source URL: https://dumps.wikimedia.org/viwiki/20261101/viwiki-20261101-pages-articles3.xml-p3452086p4565246.bz2
+- Article limit: 2,000 main-namespace, non-redirect articles.
+- Result summary: `reports/VIWIKI_EXPANDED_2000_20261101.md`.
+
 Smoke shard:
 
 - File: `viwiki-20261101-pages-articles4.xml-p4565247p6065246.bz2`.

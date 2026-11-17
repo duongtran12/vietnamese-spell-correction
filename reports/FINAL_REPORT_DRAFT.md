@@ -20,13 +20,13 @@ cục bộ, không sử dụng mô hình pretrained, embedding pretrained hoặc
 thời điểm suy luận.
 
 Dữ liệu thử nghiệm hiện tại được trích xuất từ một shard chính thức của
-Vietnamese Wikipedia dump ngày 01/11/2026. Sau khi loại trùng chính xác và gần
-trùng, dữ liệu còn 2.675 câu, được chia theo document thành train, validation và
+Vietnamese Wikipedia dump ngày 01/11/2026. Hệ thống giữ 2.000 bài và sau khi
+loại trùng còn 53.953 câu, được chia theo document thành train, validation và
 test trước khi sinh lỗi tổng hợp. Thiết kế và tham số chỉ được lựa chọn trên
-validation; test vẫn chưa được sử dụng.
+validation; test mở rộng vẫn chưa được sử dụng.
 
-Trên validation, cấu hình hiện tại đạt Correction F1 47,79%, Accuracy@3 64,44%,
-Sentence Accuracy 55,56% và False Correction Rate 0,58%. Kết quả cho thấy mô
+Trên validation, cấu hình hiện tại đạt Correction F1 61,21%, Accuracy@3 66,49%,
+Sentence Accuracy 65,24% và False Correction Rate 0,40%. Kết quả cho thấy mô
 hình ngữ cảnh cải thiện rõ so với baseline Edit Distance, trong khi các cơ chế
 giữ nguyên và rank margin giúp ngăn phần lớn false positive của detector trở
 thành sửa nhầm thực tế.
@@ -56,28 +56,28 @@ hiểu ngữ nghĩa sâu.
 
 ## 4. Dữ liệu
 
-Nguồn dữ liệu là shard:
+Nguồn dữ liệu mở rộng là shard:
 
-`viwiki-20261101-pages-articles4.xml-p4565247p6065246.bz2`
+`viwiki-20261101-pages-articles3.xml-p3452086p4565246.bz2`
 
 Nguồn chính thức:
 
 `https://dumps.wikimedia.org/viwiki/20261101/`
 
-Quá trình chuyển đổi quét 596 trang và giữ lại 127 bài viết thuộc namespace
-chính, không phải redirect. Ban đầu hệ thống trích xuất 2.803 câu và 68.106
+Quá trình chuyển đổi quét 13.332 trang và giữ lại 2.000 bài viết thuộc namespace
+chính, không phải redirect. Ban đầu hệ thống trích xuất 56.428 câu và 1.400.404
 token.
 
 Sau kiểm tra chất lượng:
 
-- Loại 75 câu trùng chính xác.
-- Loại 53 câu gần trùng ở threshold 0,95.
-- Còn lại 2.675 câu.
-- Train: 101 documents, 2.013 câu, 49.845 token.
-- Validation: 13 documents, 234 câu, 6.136 token.
-- Test: 13 documents, 428 câu, 10.564 token.
-- Vocabulary chỉ từ train: 5.367 token.
-- Validation OOV rate: 10,61%.
+- Loại 1.755 câu trùng chính xác.
+- Loại 720 câu gần trùng ở threshold 0,95.
+- Còn lại 53.953 câu.
+- Train: 1.588 documents, 43.312 câu, 1.085.839 token.
+- Validation: 199 documents, 4.779 câu, 124.790 token.
+- Test niêm phong: 198 documents, 5.862 câu, 155.041 token.
+- Vocabulary chỉ từ train: 40.127 token.
+- Validation OOV rate: 3,22%.
 
 Các split được tạo theo `document_id` trước khi sinh lỗi nhằm hạn chế leakage.
 Mỗi split dùng seed cố định để sinh độc lập các lỗi delete, insert, substitute,
@@ -106,7 +106,7 @@ Cấu hình huấn luyện chính:
 - Early stopping patience: 4.
 - Seed: 42.
 
-Checkpoint tốt nhất xuất hiện ở epoch 7; huấn luyện dừng sau epoch 11.
+Checkpoint tốt nhất xuất hiện ở epoch 4; huấn luyện dừng sau epoch 8.
 
 ### 5.3. Candidate generator
 
@@ -134,8 +134,8 @@ Hệ thống luôn thêm phương án giữ nguyên vào danh sách ứng viên.
 
 Cấu hình được chọn trên validation:
 
-- Detector threshold: 0,60.
-- Minimum rank margin: 0,75.
+- Detector threshold: 0,50.
+- Minimum rank margin: 1,00.
 - Diacritic-only margin cho token OOV: 0,50.
 - Title-case diacritic margin cho token OOV: 0,30.
 - Keep-original bonus: 0,75.
@@ -159,24 +159,23 @@ giúp giữ từ hợp lệ và vẫn sửa được lỗi dấu OOV như `Hộm
 
 ### 7.1. Candidate generator
 
-- Recall@1: 56,30%.
-- Recall@3: 70,37%.
-- Recall@5: 77,04%.
-- In-vocabulary Recall@5: 89,66%.
-- Target OOV rate: 14,07%.
+- Recall@1: 57,63%.
+- Recall@3: 77,36%.
+- Recall@5: 83,06%.
+- Candidate dictionary size: 37.528.
 
 ### 7.2. Ranker
 
-- Edit-distance baseline Accuracy@1: 56,30%.
-- Context + Edit Accuracy@1: 65,93%.
-- Mức tăng tuyệt đối: 9,63 điểm phần trăm.
-- Context + Edit Accuracy@3: 74,07%.
+- Edit-distance baseline Accuracy@1: 57,63%.
+- Context + Edit Accuracy@1: 75,12%.
+- Mức tăng tuyệt đối: 17,49 điểm phần trăm.
+- Context + Edit Accuracy@3: 81,61%.
 
 ### 7.3. BiLSTM detector
 
-- Precision lớp ERROR: 17,03%.
-- Recall lớp ERROR: 87,41%.
-- ERROR-F1: 28,50%.
+- Precision lớp ERROR: 40,21%.
+- Recall lớp ERROR: 82,78%.
+- ERROR-F1: 54,13%.
 
 Detector ưu tiên recall nên tạo nhiều false positive. Vì vậy chất lượng sản phẩm
 không được đánh giá chỉ bằng detector F1 mà phải xem thêm applied corrections và
@@ -184,18 +183,19 @@ false-correction rate.
 
 ### 7.4. End-to-end validation
 
-- Correction precision: 59,34%.
-- Correction recall: 40,00%.
-- Correction F1: 47,79%.
-- Accuracy@3: 64,44%.
-- Sentence Accuracy: 55,56%.
-- False Correction Rate: 0,58%.
+- Correction precision: 69,88%.
+- Correction recall: 54,45%.
+- Correction F1: 61,21%.
+- Accuracy@3: 66,49%.
+- Sentence Accuracy: 65,24%.
+- False Correction Rate: 0,40%.
 
-Các kết quả trên thuộc validation smoke experiment, chưa phải kết quả test cuối.
+Các kết quả trên thuộc validation mở rộng, chưa phải kết quả test cuối.
 
-## 8. Ablation study
+## 8. Ablation study của mốc smoke
 
-Ablation sử dụng cùng 135 vị trí lỗi validation:
+Ablation dưới đây sử dụng 135 vị trí lỗi của mốc smoke và được giữ để giải thích
+lựa chọn kiến trúc ranker:
 
 - Edit baseline: Accuracy@1 56,30%.
 - Edit + frequency, không context: 54,81%.
@@ -211,9 +211,10 @@ frequency score.
 
 ![Ablation](figures/viwiki-20261101-smoke-dedup-ranker-ablation.png)
 
-## 9. Error analysis
+## 9. Error analysis của mốc smoke
 
-Trên 6.136 token validation:
+Phân tích dưới đây thuộc validation smoke 6.136 token. Error analysis cho corpus
+mở rộng sẽ được tái tạo sau khi khóa cấu hình:
 
 - True positive của detector: 118.
 - False positive: 575.
@@ -251,8 +252,8 @@ Giao diện chạy cục bộ bằng:
 
 ## 11. Hạn chế
 
-- Corpus hiện tại chỉ là một shard Wikipedia nhỏ.
-- Target OOV rate còn 14,07%, giới hạn candidate recall.
+- Corpus hiện tại mới dùng 2.000 bài trong một shard Wikipedia.
+- Validation OOV đã giảm còn 3,22% nhưng tên riêng và token hiếm vẫn khó sửa.
 - Lỗi tổng hợp chưa phản ánh đầy đủ lỗi người dùng thật.
 - Detector precision thấp và nhạy với tên riêng, số, token ngoại ngữ.
 - Mô hình n-gram chỉ biểu diễn ngữ cảnh ngắn.
@@ -260,8 +261,8 @@ Giao diện chạy cục bộ bằng:
 
 ## 12. Hướng phát triển
 
-1. Mở rộng thêm các shard Wikipedia được phê duyệt.
-2. Lọc near-duplicate và huấn luyện lại toàn bộ artifact.
+1. Tối ưu cache detector và candidate search cho corpus lớn.
+2. Tái tạo error analysis và ablation cần thiết trên validation mở rộng.
 3. Bổ sung một tập lỗi thực nhỏ để đánh giá riêng, không trộn với synthetic test.
 4. Khóa thiết kế và chạy test đúng một lần.
 5. Hoàn thiện báo cáo Word, slide và diễn tập demo.
@@ -283,3 +284,5 @@ trước khi xem đây là kết quả chính thức của đồ án.
 - `reports/viwiki-20261101-smoke-dedup-inference-tuning.json`.
 - `reports/viwiki-20261101-smoke-dedup-ablation.json`.
 - `reports/DECISION_LOG.md`.
+- `reports/VIWIKI_EXPANDED_2000_20261101.md`.
+- `reports/viwiki-20261101-expanded-2000-inference-tuning.json`.

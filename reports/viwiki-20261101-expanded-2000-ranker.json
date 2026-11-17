@@ -1,0 +1,34 @@
+{
+  "examples": 2898,
+  "in_vocabulary_examples": 2728,
+  "target_oov_rate": 0.05866114561766736,
+  "candidate_recall_at_k": 0.8305728088336783,
+  "baseline_accuracy_at_k": {
+    "1": 0.5762594893029676,
+    "3": 0.7736369910282954
+  },
+  "context_accuracy_at_k": {
+    "1": 0.751207729468599,
+    "3": 0.81608005521049
+  },
+  "baseline_accuracy_at_1_by_error_type": {
+    "delete": 0.21202003338898165,
+    "diacritic": 0.4336917562724014,
+    "insert": 0.8775510204081632,
+    "substitute": 0.5752066115702479,
+    "transpose": 0.8040201005025126
+  },
+  "context_accuracy_at_1_by_error_type": {
+    "delete": 0.5559265442404007,
+    "diacritic": 0.7114695340501792,
+    "insert": 0.8515769944341373,
+    "substitute": 0.7603305785123967,
+    "transpose": 0.8844221105527639
+  },
+  "accuracy_at_1_delta": 0.17494824016563149,
+  "weights": {
+    "context": 1.0,
+    "edit": 1.0,
+    "frequency": 0.0
+  }
+}
